@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_27_115416) do
+ActiveRecord::Schema.define(version: 2019_01_27_121601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cases", force: :cascade do |t|
+    t.bigint "caseworker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["caseworker_id"], name: "index_cases_on_caseworker_id"
+  end
 
   create_table "caseworkers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +30,23 @@ ActiveRecord::Schema.define(version: 2019_01_27_115416) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_caseworkers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_caseworkers_on_reset_password_token", unique: true
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.bigint "case_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "email"
+    t.string "document_number"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_members_on_case_id"
   end
 
 end

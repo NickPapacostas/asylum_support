@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KhoraLegal</title>
+    <title>Khora Legal</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar">
+      <div class="navbar-section">
+        Khora Legal
+      </div>
+
+        <div class="flashes">
+          <% flash.each do |key, value| %>
+            <%= content_tag :div, value, class: "flash #{key}" %>
+          <% end %>
+        </div>
+
+      <div class="navbar-section">
+        <div class="account-header">
+          <% if caseworker_signed_in? %>
+            <%= link_to 'Edit account', edit_caseworker_registration_path %>
+            <%= link_to 'Sign out', destroy_caseworker_session_path, :method=>'delete' %>
+          <% else %>
+            <%= link_to 'Sign in', new_caseworker_session_path %>
+            <%= link_to 'Sign up', new_caseworker_registration_path %>
+          <% end %>
+        </div>
+      </div>
+
+    </header>
+
+    <div class="container">
+      <div class="columns">
+        <div class="column col-1 hide-sm">
+          <% if current_caseworker %>
+            <ul class="nav">
+              <li class="nav-item">
+                  <%= nav_link "Dashboard", caseworker_dashboard_path(current_caseworker) %>
+              </li>
+            </ul>
+
+          <% end %>
+        </div>
+        <div class="divider-vert"></div>
+        <div class="column col-10 col-sm-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

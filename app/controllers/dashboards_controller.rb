@@ -4,5 +4,4 @@ class DashboardsController < ApplicationController
 	def show
 		@caseworker = current_caseworker
 	end
-
 end
