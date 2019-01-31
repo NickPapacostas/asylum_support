@@ -1,58 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Khora Legal</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "KhoraLegal" %></title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+
+    <%= javascript_include_tag "application" %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
   </head>
-
   <body>
-    <header class="navbar">
-      <div class="navbar-section">
-        Khora Legal
-      </div>
 
-        <div class="flashes">
-          <% flash.each do |key, value| %>
-            <%= content_tag :div, value, class: "flash #{key}" %>
-          <% end %>
-        </div>
-
-      <div class="navbar-section">
-        <div class="account-header">
-          <% if caseworker_signed_in? %>
-            <%= link_to 'Edit account', edit_caseworker_registration_path %>
-            <%= link_to 'Sign out', destroy_caseworker_session_path, :method=>'delete' %>
-          <% else %>
-            <%= link_to 'Sign in', new_caseworker_session_path %>
-            <%= link_to 'Sign up', new_caseworker_registration_path %>
-          <% end %>
-        </div>
-      </div>
-
-    </header>
-
-    <div class="container">
-      <div class="columns">
-        <div class="column col-1 hide-sm">
-          <% if current_caseworker %>
-            <ul class="nav">
-              <li class="nav-item">
-                  <%= nav_link "Dashboard", caseworker_dashboard_path(current_caseworker) %>
-              </li>
-            </ul>
-
-          <% end %>
-        </div>
-        <div class="divider-vert"></div>
-        <div class="column col-10 col-sm-12">
-          <%= yield %>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">KhoraLegal</a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Link1", "/path1"  %></li>
+            <li><%= link_to "Link2", "/path2"  %></li>
+            <li><%= link_to "Link3", "/path3"  %></li>
+          </ul>
         </div>
       </div>
     </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; Company 2019</p>
+      </footer>
+
+    </div> <!-- /container -->
 
   </body>
 </html>
