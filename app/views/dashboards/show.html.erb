@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="row">
 		<div class="column col-lg-3">
-			<%= link_to("New Case", "#", class: 'btn btn-primary') %>
+			<%= link_to("New Case", new_case_path, class: 'btn btn-primary') %>
 			<%= link_to("Find Case", "#", class: 'btn btn-primary') %>
 		</div>
     <div class="column col-lg-9">
-    	Recent Activity
+    	<%= render_activities(@activities) %>
     </div>
 	</div>
 

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   	get 'dashboard', to: 'dashboards#show'
   end
 
+  resources :cases
+
   devise_scope :caseworker do
 	  # add after sign in path
 	  #  https://stackoverflow.com/questions/19855866/how-to-set-devise-sign-in-page-as-root-page-in-rails

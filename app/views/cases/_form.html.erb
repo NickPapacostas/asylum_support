@@ -1,0 +1,33 @@
+<%= bootstrap_form_for(@case) do |f| %>
+	<%= f.nested_fields_for :members do |member_form| %>
+		<div>
+			<%= member_form.text_field :first_name, class: "form-input" %>
+		</div>
+
+		<div>
+			<%= member_form.text_field :last_name, class: "form-input" %>
+		</div>
+
+		<div>
+			<%= member_form.text_field :phone_number, class: "form-input" %>
+		</div>
+
+		<div>
+			<%= member_form.text_field :email, class: "form-input", type: 'email' %>
+		</div>
+
+		<div>
+			<%= member_form.text_field :document_number, class: "form-input" %>
+		</div>
+
+		<div>
+			<%= member_form.text_area :notes, class: "form-input" %>
+		</div>
+
+		<%= member_form.remove_nested_fields_link 'Remove', class: "form-label cancel" %>
+	<% end %>
+
+	<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-primary add-member' %>
+
+	<%= f.submit "Save" %>
+<% end %>
