@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_01_31_174519) do
   end
 
   create_table "cases", force: :cascade do |t|
+    t.text "description"
     t.bigint "caseworker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

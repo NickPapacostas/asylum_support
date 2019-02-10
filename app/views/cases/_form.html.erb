@@ -1,33 +1,65 @@
-<%= bootstrap_form_for(@case) do |f| %>
-	<%= f.nested_fields_for :members do |member_form| %>
-		<div>
-			<%= member_form.text_field :first_name, class: "form-input" %>
-		</div>
+<%= bootstrap_form_for(the_case) do |f| %>
+  <!-- One "tab" for each step in the form: -->
+  	<%= f.text_area :description, placeholder: "Brief Overview..." %>
 
-		<div>
-			<%= member_form.text_field :last_name, class: "form-input" %>
-		</div>
+  	<% if the_case.id %>
+	  	<hr>
+	  	<h2>Activity</h2>
 
-		<div>
-			<%= member_form.text_field :phone_number, class: "form-input" %>
-		</div>
+	  	<div class="container">
+	  		<div class="row">
+    			<div class="col-sm-5">
+    				<%= render partial: 'new_activity', locals: {the_case: @case, activities: @activities} %>
+    			</div>
 
-		<div>
-			<%= member_form.text_field :email, class: "form-input", type: 'email' %>
-		</div>
 
-		<div>
-			<%= member_form.text_field :document_number, class: "form-input" %>
-		</div>
+		  		<% if !activities.empty?  %>
+	    			<div class="col-sm-5">
+	    				<%= render_activities(@activities) %>
+	    			</div>
+		  		<% end %>
 
-		<div>
-			<%= member_form.text_area :notes, class: "form-input" %>
-		</div>
+  	<% end %>
 
-		<%= member_form.remove_nested_fields_link 'Remove', class: "form-label cancel" %>
-	<% end %>
 
-	<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-primary add-member' %>
+
+  	<hr>
+  	<div>
+	  	<h2>Members</h2>
+  	</div>
+  	<div class="container">
+  		<div class="row">
+				<%= f.nested_fields_for :members, wrapper_options: {class: "col-sm-4"} do |member_form| %>
+								<div class="">
+									<%= member_form.text_field :first_name, class: "form-control" %>
+								</div>
+
+								<div class="">
+									<%= member_form.text_field :last_name, class: "form-control" %>
+								</div>
+
+								<div class="">
+									<%= member_form.text_field :phone_number, class: "form-control" %>
+								</div>
+								<div class="">
+									<%= member_form.text_field :email, class: "form-control", type: 'email' %>
+								</div>
+
+								<div class="">
+									<%= member_form.text_field :document_number, class: "form-control" %>
+								</div>
+
+								<div class="">
+									<%= member_form.text_area :notes, class: "form-control" %>
+								</div>
+						<%= member_form.remove_nested_fields_link 'Remove', class: "form-label cancel" %>
+				<% end %>
+
+
+  		</div>
+			<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-primary add-member' %>
+  	</div>
+
 
 	<%= f.submit "Save" %>
 <% end %>

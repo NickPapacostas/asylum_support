@@ -15,3 +15,18 @@
 
  */
 
+hr {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.main-container {
+	text-align: center;
+}
+
+.nested_case_members {
+	width: 30%;
+	padding: 10px;
+	border: 1px solid grey;
+	margin: 10px;
+}

@@ -6,10 +6,12 @@ class CasesController < ApplicationController
 
 	def edit
 		@case = Case.find(params[:id])
+		@activities = @case.activities
 	end
 
 	def show
 		@case = Case.find(params[:id])
+		@activities = @case.activities
 	end
 
 	def create
