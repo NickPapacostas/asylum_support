@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   	get 'dashboard', to: 'dashboards#show'
   end
 
-  resources :cases
+
+  resources :members
+
+  resources :cases do
+    get 'activities', to: "cases#all_activity", on: :collection
+    post 'activities', to: 'cases#create_activity'
+  end
+
 
   devise_scope :caseworker do
 	  # add after sign in path

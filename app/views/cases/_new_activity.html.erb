@@ -1,3 +1,8 @@
-<%= bootstrap_form_tag(@case.activities.build) do |f| %>
+<div class="new-activity-form">
+	<h3>New</h3>
 
-<% end %>
+	<%= bootstrap_form_tag(url: case_activities_path(@case)) do |f| %>
+		<%= f.select :type, CaseActivity.types, placeholder: "Select type..." %>
+	<% end %>
+
+</div>

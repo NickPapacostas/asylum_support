@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_31_174519) do
+ActiveRecord::Schema.define(version: 2019_04_15_180651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(version: 2019_01_31_174519) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "case_number"
+    t.datetime "date_of_birth"
+    t.string "nationality"
+    t.string "gender"
+    t.string "language"
+    t.datetime "arrival_date"
+    t.string "arrival_location"
+    t.string "regional_asylum_office"
+    t.boolean "geographic_restriction", default: false
+    t.string "legal_status", default: [], array: true
+    t.string "vulnerabilities", default: [], array: true
+    t.string "housing", default: [], array: true
     t.index ["case_id"], name: "index_members_on_case_id"
   end
 

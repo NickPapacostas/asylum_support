@@ -15,7 +15,7 @@
 
  */
 
-hr {
+.case-form hr {
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
@@ -30,3 +30,7 @@ hr {
 	border: 1px solid grey;
 	margin: 10px;
 }
+
+input, select {
+}
+

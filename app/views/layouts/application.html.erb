@@ -28,14 +28,22 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">KhoraLegal</a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
-        </div>
+        <% if current_caseworker %>
+        <%= link_to "Khora Asylum Support", caseworker_dashboard_path(current_caseworker), class: "navbar-brand" %>
+          <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+              <li class="nav-item">
+                <%= link_to "Dashboard", caseworker_dashboard_path(current_caseworker), class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Cases", cases_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Activity", activities_cases_path %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -46,11 +54,6 @@
           <%= yield %>
         </div>
       </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2019</p>
-      </footer>
-
     </div> <!-- /container -->
 
   </body>

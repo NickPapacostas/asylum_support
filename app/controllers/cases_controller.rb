@@ -28,23 +28,34 @@ class CasesController < ApplicationController
 	end
 
 	def update
+		@case = Case.find(params[:id])
+
+		if @case.update_attributes(case_params)
+			@case.create_activity(key: 'case.updated', owner: current_caseworker)
+			flash[:success] = "Case updated"
+			redirect_to case_path(@case)
+		else
+			flash[:error] = "Case not updated"
+			render :edit
+		end
+	end
+
+	def create_activity
+		@case = Case.find(params[:case_id])
+		@activity = @case.activities.create(activity_params)
+	end
+
+	def all_activity
+		@activities = CaseActivity.all
 	end
 
 	private
 
+	def activity_params
+		params.require(:activity)
+	end
+
 	def case_params
-		params.require(:case).permit(members_attributes: member_attributes)
+		params.require(:case).permit(:description, members_attributes: Member.strong_params)
 	end
-
-	def member_attributes
-		[
-	    :first_name,
-	    :last_name,
-	    :phone_number,
-	    :email,
-	    :document_number,
-	    :notes
-		]
-	end
-
 end
