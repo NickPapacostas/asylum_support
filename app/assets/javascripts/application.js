@@ -14,5 +14,17 @@
 //= require rails-ujs
 //= require activestorage
 //= require nested_form_fields
+//= require datatables
+//= require chosen-jquery
 //= require twitter/bootstrap
+//= require activities
 //= require_tree .
+
+$(document).ready(function(){
+	// $('.chosen-select').chosen(
+	// 	{
+	// 		allow_single_deselect: true,
+	// 		no_results_text: "No results matched",
+	// 		width: "100%"
+	// 	})
+})

@@ -44,7 +44,9 @@ gem "jquery-rails"
 gem "twitter-bootstrap-rails"
 gem "bootstrap_form", ">= 4.1.0"
 gem 'nested_form_fields'
-
+gem 'chosen-rails'
+gem 'jquery-datatables'
+gem 'ajax-datatables-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

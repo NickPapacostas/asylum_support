@@ -1,7 +1,7 @@
 class CasesController < ApplicationController
 	def new
 		@case = Case.new
-		@case.members.build
+		@case.members
 	end
 
 	def edit
@@ -9,16 +9,33 @@ class CasesController < ApplicationController
 		@activities = @case.activities
 	end
 
+	def find
+		if params[:case_number]
+			redirect_to case_path(params[:case_number].to_i)
+		else
+			flash.now[:error] = "Case not found"
+			render :show
+		end
+	end
+
+	def index
+	  respond_to do |format|
+	    format.html
+	    format.json { render json: CaseDatatable.new(params) }
+	  end
+	end
+
 	def show
 		@case = Case.find(params[:id])
-		@activities = @case.activities
+		@activities = @case.activities.where(key: "case.activity_created").reverse.take(10)
 	end
 
 	def create
 		@case = Case.new(case_params)
 		@case.caseworker = current_caseworker
 
-		if @case.save
+		if @case.save && @case.members.map(&:save)
+			@case.reload
 			@case.create_activity(key: 'case.created', owner: current_caseworker)
 			flash[:success] = "Case created"
 			redirect_to case_path(@case)
@@ -42,7 +59,14 @@ class CasesController < ApplicationController
 
 	def create_activity
 		@case = Case.find(params[:case_id])
-		@activity = @case.activities.create(activity_params)
+		@activity = @case.create_activity(
+			'activity_created',
+			owner: current_caseworker,
+			case_activity_type: activity_params[:case_activity_type],
+			notes: activity_params[:notes]
+			)
+		redirect_to case_path(@case)
+
 	end
 
 	def all_activity
@@ -52,7 +76,7 @@ class CasesController < ApplicationController
 	private
 
 	def activity_params
-		params.require(:activity)
+		params.require(:activity).permit(:case_activity_type, :notes)
 	end
 
 	def case_params

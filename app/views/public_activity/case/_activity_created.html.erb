@@ -1,0 +1,5 @@
+<% activity_hash = JSON.parse(activity.to_json) %>
+<% activity_hash[:first_name] = activity.owner.first_name %>
+<div class="activity-created" data-activity-id="<%= activity.id %>" data-activity-json=<%= URI.encode(activity_hash.to_json) %>>
+	<%= activity.case_activity_type %> added to <%= "Case ##{activity.trackable_id}" %> by <%= activity.owner.first_name %>
+</div>

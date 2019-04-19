@@ -1,0 +1,19 @@
+<div>
+  <table id="cases-datatable" data-source="<%= cases_path(format: :json) %>" class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Case number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Caseworker</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <%= link_to("Create a case", new_case_path, class: 'btn btn-primary') %>
+
+</div>
+

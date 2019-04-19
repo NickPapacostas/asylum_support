@@ -1,15 +1,46 @@
 <div class="container">
 	<div class="row">
-		<div class="column col-lg-3">
+		<div class="column col-lg-5">
     	<h3>Actions</h3>
     	<hr>
-			<%= link_to("New Case", new_case_path, class: 'btn btn-primary') %>
-			<%= link_to("Find Case", "#", class: 'btn btn-primary') %>
+    	<%= form_tag('/cases/find') do %>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+      			<%= link_to("New Case", new_case_path, class: 'btn btn-primary') %>
+          </div>
+
+          <div class="form-group col-md-6">
+              <%= text_field_tag :case_number, nil, {class: 'dashboard-case-input', placeholder: "Go to case #"} %>
+              <%= submit_tag "find case" %>
+          </div>
+        </div>
+      <% end %>
 		</div>
-    <div class="column col-lg-9">
+    <div class="column col-lg-7">
     	<h3>Recent Activity</h3>
     	<hr>
-    	<%= render_activities(@activities) %>
+        <table class="table">
+          <head>
+            <tr>
+              <th scope="col">Case number</th>
+              <th scope="col">Date</th>
+              <th scope="col">Caseworker</th>
+              <th scope="col">Type</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </head>
+          <tbody>
+            <% @activities.each do |a| %>
+              <tr>
+                <td><%= link_to(a.trackable_id, case_path(a.trackable_id)) %></td>
+                <td><%= a.updated_at.to_date %></td>
+                <td><%= a.owner.full_name %></td>
+                <td><%= a.case_activity_type %></td>
+                <td><%= a.notes %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
     </div>
 	</div>
 

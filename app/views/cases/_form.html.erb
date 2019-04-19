@@ -1,5 +1,4 @@
 <div class="case-form">
-	<hr>
 	<%= bootstrap_form_for(the_case) do |f| %>
 	  <!-- One "tab" for each step in the form: -->
 	  	<%= f.text_area :description, placeholder: "Brief Overview..." %>
@@ -14,26 +13,26 @@
 
 
 									<div class="">
-										<%= f.label "First name", class: 'form-label' %>
-										<%= member_form.object.first_name%>
+										<%= f.label "First name: ", class: 'form-label' %>
+										<%= member_form.object.first_name || "None" %>
 									</div>
 
 									<div class="">
-										<%= f.label "Last name", class: 'form-label' %>
-										<%= member_form.object.last_name%>
+										<%= f.label "Last name: ", class: 'form-label' %>
+										<%= member_form.object.last_name || "None" %>
 									</div>
 
 									<div>
-										<%= link_to "show more", "#", {class: "member-modal",  "data-toggle" => "modal", "data-target" => "#member-modal-#{member_form.object.id || '1'}"} %>
+										<%= link_to "edit", "#", {class: "member-modal",  "data-toggle" => "modal", "data-target" => "#member-modal-#{member_form.object.id || '1'}"} %>
 									</div>
 							<%= member_form.remove_nested_fields_link 'Remove', class: "form-label cancel" %>
-							<%= render partial: 'member_modal', locals: {member_form: member_form } %>
+							<%= render partial: 'member_modal', locals: {member_form: member_form, case_persisted: !the_case.id.nil? } %>
 					<% end %>
 	  		</div>
 
 
 					<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-secondary add-member' %>
-				<%= f.submit "Save", class: 'btn btn-primary' %>
+				<%= f.submit "Save", {class: 'btn btn-primary', id: 'case-save'} %>
 	  	</div>
 
 
@@ -45,15 +44,47 @@
 
 		  	<div class="container">
 		  		<div class="row">
-	    			<div class="col-sm-5">
+	    			<div class="col-sm-4">
 	    				<%= render partial: 'new_activity', locals: {the_case: @case, activities: @activities} %>
 	    			</div>
 
 
 			  		<% if !activities.empty?  %>
-		    			<div class="col-sm-5">
-		    				<h3>Past</h3>
-		    				<%= render_activities(@activities) %>
+		    			<div class="col-sm-7">
+		    				<h3>Recent</h3>
+		    				<table class="table">
+		    					<head>
+		    						<tr>
+		    							<th scope="col">Date & time</th>
+		    							<th scope="col">Caseworker</th>
+		    							<th scope="col">Type</th>
+		    							<th scope="col">Notes</th>
+		    						</tr>
+		    					</head>
+		    					<tbody>
+		    						<% @activities.each do |a| %>
+			    						<tr>
+			    							<td><%= a.updated_at %></td>
+			    							<td><%= a.owner.full_name %></td>
+			    							<td><%= a.case_activity_type %></td>
+			    							<td><%= a.notes %></td>
+			    						</tr>
+		    						<% end %>
+		    					</tbody>
+		    				</table>
+		    			</div>
+		    			<div id="activity-viewport" class="col-sm-4 hide">
+		    				<label>
+									Type:
+		    				</label>
+ 								<div class="activity-type"></div>
+
+ 								<label>Caseworker: </label>
+		    				<div class="activity-owner"></div>
+
+
+ 								<label>Notes: </label>
+		    				<div class="activity-notes"></div>
 		    			</div>
 			  		<% end %>
 			  	</div>

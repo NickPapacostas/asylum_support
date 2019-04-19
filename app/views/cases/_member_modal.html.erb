@@ -41,13 +41,12 @@
             <%= member_form.text_field :email, class: "form-control" %>
           </div>
 
-          <h2>Legal Info</h2>
-          <div class="">
-            <%= member_form.collection_check_boxes(:legal_status, Member.legal_status_options, :to_s, :to_s, class: "form-control") %>
+          <div class="form-check form-check-inline">
+            <%= member_form.collection_check_boxes(:legal_status, Member.legal_status_options, :to_s, :to_s, class: "form-check-input") %>
           </div>
 
           <div class="">
-            <%= member_form.text_field :case_number, class: "form-control" %>
+            <%= member_form.text_field :case_number, label: "Government case number", class: "form-control" %>
           </div>
 
           <div class="">

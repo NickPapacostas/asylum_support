@@ -1,7 +1,7 @@
 class Member < ApplicationRecord
 	include PublicActivity::Model
 
-	belongs_to :case
+	has_one :case
 
 	def self.strong_params
 		[
