@@ -2,7 +2,7 @@
 	<%= form_for(the_case) do |f| %>
 	  <!-- One "tab" for each step in the form: -->
   	<%= f.text_area :description, placeholder: "Brief Overview..." %>
-		<div class="divider big-divider"></div>
+
   	<div>
 	  	<h2>Members</h2>
   	</div>
@@ -20,9 +20,37 @@
 				</div>
 			<% end %>
 		</div>
+		<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-primary add-member' %>
+
+		<div class="divider big-divider"></div>
+
+
+  	<div>
+	  	<h2>Files</h2>
+  	</div>
+
+  	<div class="container">
+  		<div class="columns">
+  			<div class="column col-5">
+					<ul>
+					  <% @case.files.each do |file| %>
+					    <li>
+					      <%= link_to(file.blob.filename, rails_blob_path(file.blob, disposition: "attachment")) %>
+					    </li>
+					  <% end %>
+					</ul>
+  			</div>
+				<div class="divider divider-vert"></div>
+  			<div class="column col-5">
+	  			<h4>Add Files</h4>
+  				<%= f.file_field :files, multiple: true, direct_upload: true %>
+  			</div>
+  		</div>
+  	</div>
+
+
 		<div class="form-group">
-			<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-primary add-member' %>
-			<%= f.submit "Save", {class: 'btn btn-primary', id: 'case-save'} %>
+			<%= f.submit "Save Case", {class: 'btn btn-primary', id: 'case-save'} %>
 		</div>
 	<% end %>
 </div>
