@@ -3,6 +3,8 @@
 	  <!-- One "tab" for each step in the form: -->
   	<%= f.text_area :description, placeholder: "Brief Overview..." %>
 
+		<div class="divider big-divider"></div>
+
   	<div>
 	  	<h2>Members</h2>
   	</div>
@@ -31,7 +33,7 @@
 
   	<div class="container">
   		<div class="columns">
-  			<div class="column col-5">
+  			<div class="column col-6">
 					<ul>
 					  <% @case.files.each do |file| %>
 					    <li>
@@ -40,7 +42,7 @@
 					  <% end %>
 					</ul>
   			</div>
-				<div class="divider divider-vert"></div>
+				<div class="divider-vert"></div>
   			<div class="column col-5">
 	  			<h4>Add Files</h4>
   				<%= f.file_field :files, multiple: true, direct_upload: true %>

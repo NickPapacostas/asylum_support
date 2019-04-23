@@ -91,6 +91,7 @@ h1, h2 {
 
 #case_description {
 	width: 70%;
+	min-height: 200px;
 }
 
 .btn-cancel:hover {
@@ -108,4 +109,8 @@ h1, h2 {
 
 .new-case-button {
 	/*float: left;*/
+}
+
+#case-save {
+	margin-top: 30px;
 }
