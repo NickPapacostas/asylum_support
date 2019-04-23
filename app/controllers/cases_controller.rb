@@ -76,7 +76,7 @@ class CasesController < ApplicationController
 	private
 
 	def activity_params
-		params.require(:activity).permit(:case_activity_type, :notes)
+		params.require(:public_activity_activity).permit(:case_activity_type, :notes)
 	end
 
 	def case_params
