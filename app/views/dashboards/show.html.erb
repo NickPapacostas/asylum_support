@@ -1,24 +1,29 @@
-<div class="container">
-	<div class="row">
+<div class="container text-center">
+	<div class="columns">
 		<div class="column col-lg-5">
     	<h3>Actions</h3>
-    	<hr>
-    	<%= form_tag('/cases/find') do %>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-      			<%= link_to("New Case", new_case_path, class: 'btn btn-primary') %>
+    	<div class="divider big-divider"></div>
+      <div class="container">
+        <div class="columns">
+          <div class="column col-3">
+            <%= link_to("New Case", new_case_path, class: 'btn btn-primary new-case-button') %>
           </div>
-
-          <div class="form-group col-md-6">
-              <%= text_field_tag :case_number, nil, {class: 'dashboard-case-input', placeholder: "Go to case #"} %>
-              <%= submit_tag "find case" %>
+          <div class="column col-6">
+            <%= form_tag('/cases/find', class: 'case-find-form') do %>
+              <%= text_field_tag :case_number, nil, {placeholder: "Go to case #"} %>
+              <%= submit_tag "find case", class: 'btn btn-primary'%>
+            <% end %>
           </div>
         </div>
-      <% end %>
+
+      </div>
+
 		</div>
+    <div class="divider-vert"></div>
+
     <div class="column col-lg-7">
     	<h3>Recent Activity</h3>
-    	<hr>
+      <div class="divider big-divider"></div>
         <table class="table">
           <head>
             <tr>

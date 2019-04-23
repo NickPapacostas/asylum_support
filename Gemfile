@@ -41,8 +41,6 @@ gem 'devise'
 gem 'public_activity'
 
 gem "jquery-rails"
-gem "twitter-bootstrap-rails"
-gem "bootstrap_form", ">= 4.1.0"
 gem 'nested_form_fields'
 gem 'chosen-rails'
 gem 'jquery-datatables'

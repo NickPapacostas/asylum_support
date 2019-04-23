@@ -1,75 +1,91 @@
-<div class="modal" id="member-modal-<%= member_form.object.id || '1' %>" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="member-modal--title"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div class="modal modal-lg" id="member-modal-<%= member_form.object.id || '1' %>">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h5 class="modal-title" id="member-modal--title"></h5>
+      <a href="#close" class="member-close btn btn-clear float-right modal-overlay" aria-label="Close"></a>
+      <div class="modal-title h3">Member form</div>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column col-4">
+            <%= member_form.label "First name:", class: "form-label" %>
+            <%= member_form.text_field :first_name, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Last name:", class: "form-label" %>
+            <%= member_form.text_field :last_name, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Date of birth:", class: "form-label" %>
+            <%= member_form.datetime_field :date_of_birth, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Nationality:", class: "form-label" %>
+            <%= member_form.text_field :nationality, class: "form-input", type: 'email' %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Gender:", class: "form-label" %>
+            <%= member_form.text_field :gender, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Language:", class: "form-label" %>
+            <%= member_form.text_field :language, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Email:", class: "form-label" %>
+            <%= member_form.text_field :email, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Phone number:", class: "form-label" %>
+            <%= member_form.text_field :phone_number, class: "form-input" %>
+          </div>
+
+
+          <div class="form-group">
+            <%= member_form.label "Government case #:", class: "form-label" %>
+            <%= member_form.text_field :case_number, label: "Government case number", class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Arrival date (in Greece):", class: "form-label" %>
+            <%= member_form.text_field :arrival_date, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Arrival location (in Greece):", class: "form-label" %>
+            <%= member_form.text_field :arrival_location, class: "form-input" %>
+          </div>
+
+          <hr>
+          <div class="column col-12">
+            <%= member_form.label "Legal Statuses:", class: "form-label" %>
+            <%= member_form.collection_check_boxes(:legal_status, Member.legal_status_options, :to_s, :to_s, class: "form-input") %>
+          </div>
+          <hr>
+          <div class="column col-12">
+            <%= member_form.label "Vulnerabilities:", class: "form-label" %>
+            <%= member_form.collection_check_boxes(:vulnerabilities, Member.vulnerability_options, :to_s, :to_s, class: "form-input") %>
+          </div>
+
+          <hr>
+          <div class="column col-12">
+            <%= member_form.label "Housing:", class: "form-label" %>
+            <%= member_form.collection_check_boxes(:housing, Member.housing_options, :to_s, :to_s, class: "form-input") %>
+          </div>
+        </div>
       </div>
-        <div class="modal-body">
-          <div class="row">
-              <h2>General Info</h2>
-              <div class="col">
-                <%= member_form.text_field :first_name, class: "form-control" %>
-              </div>
-
-              <div class="col">
-                <%= member_form.text_field :last_name, class: "form-control" %>
-              </div>
-
-              <div class="col">
-                <%= member_form.datetime_field :date_of_birth, class: "form-control" %>
-              </div>
-
-
-          </div>
-
-          <div class="">
-            <%= member_form.text_field :nationality, class: "form-control", type: 'email' %>
-          </div>
-
-          <div class="">
-            <%= member_form.text_field :gender, class: "form-control" %>
-          </div>
-
-          <div class="">
-            <%= member_form.text_field :language, class: "form-control" %>
-          </div>
-
-          <div class="">
-            <%= member_form.text_field :email, class: "form-control" %>
-          </div>
-
-          <div class="form-check form-check-inline">
-            <%= member_form.collection_check_boxes(:legal_status, Member.legal_status_options, :to_s, :to_s, class: "form-check-input") %>
-          </div>
-
-          <div class="">
-            <%= member_form.text_field :case_number, label: "Government case number", class: "form-control" %>
-          </div>
-
-          <div class="">
-            <%= member_form.text_field :arrival_date, class: "form-control" %>
-          </div>
-
-          <div class="">
-            <%= member_form.text_field :arrival_location, class: "form-control" %>
-          </div>
-
-          <div class="">
-            <%= member_form.collection_check_boxes(:vulnerabilities, Member.vulnerability_options, :to_s, :to_s, class: "form-control") %>
-          </div>
-
-          <h2>Housing Info</h2>
-          <div class="">
-            <%= member_form.collection_check_boxes(:housing, Member.housing_options, :to_s, :to_s, class: "form-control") %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary member-modal-save" >Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary member-modal-save" >Save changes</button>
+      <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
     </div>
   </div>
 </div>

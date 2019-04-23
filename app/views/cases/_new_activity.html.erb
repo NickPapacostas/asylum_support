@@ -1,9 +1,15 @@
 <div class="new-activity-form">
 	<h3>Add</h3>
 
-	<%= bootstrap_form_tag(url: case_activities_path(@case)) do |f| %>
-		<%= f.select :type, CaseActivity.types, {},  {class: 'chosen-select', placeholder: "Select type...", name: "activity[case_activity_type]"} %>
-		<%= f.text_area :notes, name: "activity[notes]" %>
+	<%= form_for(@case.activities.build, url: case_activities_path(@case)) do |f| %>
+		<div class='form-group'>
+
+			<%= f.label "Type: ", class: 'form-label' %>
+			<%= f.collection_select(:case_activity_type, CaseActivity.types, :to_s, :to_s, {},  {class: 'form-input'}) %>
+			<%= f.label "Notes: ", class: 'form-label' %>
+			<%= f.text_area :notes, class: 'form-input' %>
+
+		</div>
 		<%= f.submit "Create", class: 'btn btn-primary' %>
 	<% end %>
 

@@ -13,9 +13,52 @@
  *= require_tree .
  *= require_self
  *= chosen
- *= chosen-theme
 
  */
+
+/*imported from freeshop*/
+
+body {
+	background-color: #fbfbfc;
+}
+
+.big-divider {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.navbar {
+    border-bottom: 1px solid;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.navbar .site-title {
+	font-size: 2em;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25%;
+}
+
+.grid-item {
+  text-align: center;
+}
+
+.cancel {
+	float: right;
+}
+
+
+/*LEGAL SPECIFIC*/
+
+
 
 .case-form hr {
 	margin-top: 50px;
@@ -27,7 +70,6 @@
 }
 
 .nested_case_members {
-	width: 30%;
 	padding: 10px;
 	border: 1px solid grey;
 	margin: 10px;
@@ -37,10 +79,32 @@
 	float: right;
 }
 
-h2 {
+h1, h2 {
 	font-style: italic;
 }
 
-.modal form input {
+
+/*.modal form input {
 	width: 80%;
+}*/
+
+#case_description {
+	width: 70%;
+}
+
+.btn-cancel:hover {
+	background-color: red;
+}
+
+.grid-container {
+	grid-gap: 10px;
+	margin: 20px;
+}
+
+.case-find-form {
+	/*margin: 40px;*/
+}
+
+.new-case-button {
+	/*float: left;*/
 }

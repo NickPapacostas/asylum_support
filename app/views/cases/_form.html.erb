@@ -1,97 +1,69 @@
 <div class="case-form">
-	<%= bootstrap_form_for(the_case) do |f| %>
+	<%= form_for(the_case) do |f| %>
 	  <!-- One "tab" for each step in the form: -->
-	  	<%= f.text_area :description, placeholder: "Brief Overview..." %>
-	  	<hr>
-	  	<div>
-		  	<h2>Members</h2>
-	  	</div>
-	  	<div class="container">
-	  		<div class="row">
-					<%= f.nested_fields_for(:members, wrapper_options: {class: "col-sm-4"}) do |member_form| %>
-									<%= member_form.hidden_field :case_id, value: the_case.id %>
-
-
-									<div class="">
-										<%= f.label "First name: ", class: 'form-label' %>
-										<%= member_form.object.first_name || "None" %>
-									</div>
-
-									<div class="">
-										<%= f.label "Last name: ", class: 'form-label' %>
-										<%= member_form.object.last_name || "None" %>
-									</div>
-
-									<div>
-										<%= link_to "edit", "#", {class: "member-modal",  "data-toggle" => "modal", "data-target" => "#member-modal-#{member_form.object.id || '1'}"} %>
-									</div>
-							<%= member_form.remove_nested_fields_link 'Remove', class: "form-label cancel" %>
-							<%= render partial: 'member_modal', locals: {member_form: member_form, case_persisted: !the_case.id.nil? } %>
+  	<%= f.text_area :description, placeholder: "Brief Overview..." %>
+		<div class="divider big-divider"></div>
+  	<div>
+	  	<h2>Members</h2>
+  	</div>
+		<div class="grid-container">
+			<%= f.nested_fields_for :members do |member_form| %>
+				<div class="grid-item">
+		    	<% if member_form.object.first_name || member_form.object.last_name %>
+						<%= "#{member_form.object.first_name} #{member_form.object.last_name}" %>
+					<% else %>
+						<%= f.label "No name yet", class: 'form-label' %>
 					<% end %>
-	  		</div>
-
-
-					<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-secondary add-member' %>
-				<%= f.submit "Save", {class: 'btn btn-primary', id: 'case-save'} %>
-	  	</div>
-
-
+					<%= link_to "Edit", "#", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal", "data-target" => "#member-modal-#{member_form.object.id || '1'}"} %>
+					<%= member_form.remove_nested_fields_link 'Remove', class: "btn btn-cancel" %>
+					<%= render partial: 'member_modal', locals: {member_form: member_form, case_persisted: !the_case.id.nil? } %>
+				</div>
+			<% end %>
+		</div>
+		<div class="form-group">
+			<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-primary add-member' %>
+			<%= f.submit "Save", {class: 'btn btn-primary', id: 'case-save'} %>
+		</div>
 	<% end %>
-
-	  	<% if the_case.id %>
-		  	<hr>
-		  	<h2>Activity</h2>
-
-		  	<div class="container">
-		  		<div class="row">
-	    			<div class="col-sm-4">
-	    				<%= render partial: 'new_activity', locals: {the_case: @case, activities: @activities} %>
-	    			</div>
-
-
-			  		<% if !activities.empty?  %>
-		    			<div class="col-sm-7">
-		    				<h3>Recent</h3>
-		    				<table class="table">
-		    					<head>
-		    						<tr>
-		    							<th scope="col">Date & time</th>
-		    							<th scope="col">Caseworker</th>
-		    							<th scope="col">Type</th>
-		    							<th scope="col">Notes</th>
-		    						</tr>
-		    					</head>
-		    					<tbody>
-		    						<% @activities.each do |a| %>
-			    						<tr>
-			    							<td><%= a.updated_at %></td>
-			    							<td><%= a.owner.full_name %></td>
-			    							<td><%= a.case_activity_type %></td>
-			    							<td><%= a.notes %></td>
-			    						</tr>
-		    						<% end %>
-		    					</tbody>
-		    				</table>
-		    			</div>
-		    			<div id="activity-viewport" class="col-sm-4 hide">
-		    				<label>
-									Type:
-		    				</label>
- 								<div class="activity-type"></div>
-
- 								<label>Caseworker: </label>
-		    				<div class="activity-owner"></div>
-
-
- 								<label>Notes: </label>
-		    				<div class="activity-notes"></div>
-		    			</div>
-			  		<% end %>
-			  	</div>
-			  </div>
-	  	<% end %>
-
-
-
-
 </div>
+
+
+<% if the_case.id %>
+	<div class="divider big-divider"></div>
+	<div class="activity-section text-center">
+  	<h2>Activity</h2>
+
+  	<div class="container">
+  		<div class="columns">
+  			<div class="column col-4">
+  				<%= render partial: 'new_activity', locals: {the_case: @case, activities: @activities} %>
+  			</div>
+	  		<% if !activities.empty?  %>
+    			<div class="column col-7">
+    				<h3>Recent</h3>
+    				<table class="table">
+    					<head>
+    						<tr>
+    							<th scope="col">Date & time</th>
+    							<th scope="col">Caseworker</th>
+    							<th scope="col">Type</th>
+    							<th scope="col">Notes</th>
+    						</tr>
+    					</head>
+    					<tbody>
+    						<% @activities.each do |a| %>
+	    						<tr>
+	    							<td><%= a.updated_at %></td>
+	    							<td><%= a.owner.full_name %></td>
+	    							<td><%= a.case_activity_type %></td>
+	    							<td><%= a.notes %></td>
+	    						</tr>
+    						<% end %>
+    					</tbody>
+    				</table>
+    			</div>
+	  		<% end %>
+	  	</div>
+		</div>
+  </div>
+<% end %>
