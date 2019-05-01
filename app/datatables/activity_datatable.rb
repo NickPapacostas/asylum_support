@@ -4,7 +4,7 @@ class ActivityDatatable < ApplicationDatatable
     @view_columns ||= {
       updated_at: { source: "PublicActivity::Activity.updated_at", cond: :like, searchable: true, orderable: true },
       case_number: { source: "PublicActivity::Activity.trackable_id", searchable: true },
-      caseworker:  { source: "Caseworker.last_name",  cond: :like, searchable: true, orderable: true },
+      caseworker:  { source: "Caseworker.last_name", orderable: true },
       activity_type:  { source: "PublicActivity::Activity.case_activity_type",  cond: :like, searchable: true, orderable: true },
       notes:  { source: "PublicActivity::Activity.notes",  cond: :like, searchable: true, orderable: true },
     }
