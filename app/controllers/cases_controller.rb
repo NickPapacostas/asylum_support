@@ -32,11 +32,11 @@ class CasesController < ApplicationController
 
 	def create
 		@case = Case.new(case_params)
-		@case.caseworker = current_caseworker
+		@case.caseworker = current_caseworker unless @case.caseworker
 
 		if @case.save && @case.members.map(&:save)
 			@case.reload
-			@case.create_activity(key: 'case.created', owner: current_caseworker)
+			@case.create_activity(key: 'case.created', owner: current_caseworker, case_activity_type: "Case created")
 			flash[:success] = "Case created"
 			redirect_to case_path(@case)
 		else
@@ -48,7 +48,7 @@ class CasesController < ApplicationController
 		@case = Case.find(params[:id])
 
 		if @case.update_attributes(case_params)
-			@case.create_activity(key: 'case.updated', owner: current_caseworker)
+			@case.create_activity(key: 'case.updated', owner: current_caseworker, case_activity_type: "Case updated")
 			flash[:success] = "Case updated"
 			redirect_to case_path(@case)
 		else
