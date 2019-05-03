@@ -10,7 +10,6 @@ ready = ->
     columns: [
       {data: 'case_number'}
       {data: 'updated_at'}
-      {data: 'caseworker'}
       {data: 'activity_type'}
       {data: 'notes'}
     ]

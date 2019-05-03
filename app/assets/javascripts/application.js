@@ -11,19 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require rails-ujs
 //= require activestorage
+//= require chosen-jquery
+//= require_tree .
 //= require nested_form_fields
 //= require datatables
-//= require chosen-jquery
-//= require activities
-//= require activestorage
-//= require_tree .
-
-$(document).ready(function(){
-	$('.chosen-select').chosen(
-		{
-			allow_single_deselect: true,
-			no_results_text: "No results matched"
-		})
-})
