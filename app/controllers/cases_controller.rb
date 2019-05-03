@@ -32,7 +32,7 @@ class CasesController < ApplicationController
 
 	def create
 		@case = Case.new(case_params)
-		@case.caseworker = current_caseworker
+		@case.caseworker = current_caseworker unless @case.caseworker
 
 		if @case.save && @case.members.map(&:save)
 			@case.reload

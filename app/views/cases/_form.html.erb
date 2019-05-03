@@ -1,6 +1,12 @@
 <div class="case-form">
 	<%= form_for(the_case) do |f| %>
-	  <!-- One "tab" for each step in the form: -->
+
+		<div>
+		Caseworker:
+	  <%= f.collection_select(:caseworker_id, Caseworker.all, :id, :full_name, prompt: true) %>
+
+		</div>
+
   	<%= f.text_area :description, placeholder: "Brief Overview..." %>
 
 		<div class="divider big-divider"></div>
@@ -22,7 +28,7 @@
 				</div>
 			<% end %>
 		</div>
-		<%= f.add_nested_fields_link :members, "Add member", class: 'btn btn-primary add-member' %>
+		<%= f.add_nested_fields_link :members, "+", class: 'btn btn-primary add-member' %>
 
 		<div class="divider big-divider"></div>
 
