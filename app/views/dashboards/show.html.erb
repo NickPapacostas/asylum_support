@@ -1,54 +1,48 @@
 <div class="container text-center">
 	<div class="columns">
 		<div class="column col-lg-5">
-    	<h3>Actions</h3>
+    	<h3>Cases</h3>
     	<div class="divider big-divider"></div>
-      <div class="container">
-        <div class="columns">
-          <div class="column col-3">
-            <%= link_to("New Case", new_case_path, class: 'btn btn-primary new-case-button') %>
-          </div>
-          <div class="column col-6">
-            <%= form_tag('/cases/find', class: 'case-find-form') do %>
-              <%= text_field_tag :case_number, nil, {placeholder: "Go to case #"} %>
-              <%= submit_tag "find case", class: 'btn btn-primary'%>
-            <% end %>
-          </div>
-        </div>
-
-      </div>
-
+      <table id="cases-datatable" data-source="<%= cases_path(format: :json) %>" class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Case number</th>
+            <th>Member Name</th>
+            <th>Caseworker</th>
+            <th>Last Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
 		</div>
     <div class="divider-vert"></div>
 
     <div class="column col-lg-7">
     	<h3>Recent Activity</h3>
       <div class="divider big-divider"></div>
-        <table class="table">
-          <head>
+      <table class="table">
+        <head>
+          <tr>
+            <th scope="col">Case number</th>
+            <th scope="col">Date</th>
+            <th scope="col">Caseworker</th>
+            <th scope="col">Type</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </head>
+        <tbody>
+          <% @activities.each do |a| %>
             <tr>
-              <th scope="col">Case number</th>
-              <th scope="col">Date</th>
-              <th scope="col">Caseworker</th>
-              <th scope="col">Type</th>
-              <th scope="col">Notes</th>
+              <td><%= link_to(a.trackable_id, case_path(a.trackable_id)) %></td>
+              <td><%= a.updated_at.to_date %></td>
+              <td><%= a.owner.full_name %></td>
+              <td><%= a.case_activity_type %></td>
+              <td><%= a.notes %></td>
             </tr>
-          </head>
-          <tbody>
-            <% @activities.each do |a| %>
-              <tr>
-                <td><%= link_to(a.trackable_id, case_path(a.trackable_id)) %></td>
-                <td><%= a.updated_at.to_date %></td>
-                <td><%= a.owner.full_name %></td>
-                <td><%= a.case_activity_type %></td>
-                <td><%= a.notes %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+          <% end %>
+        </tbody>
+      </table>
     </div>
 	</div>
-
-  <div class="row">
-  </div><!--/row-->
 </div>

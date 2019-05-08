@@ -67,4 +67,8 @@ class Member < ApplicationRecord
 			'Trauma (torture, rape, shipwreck)',
 		]
 	end
+
+  def full_name
+  	"#{first_name} #{last_name}"
+  end
 end
