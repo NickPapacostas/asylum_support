@@ -19,6 +19,7 @@ class Member < ApplicationRecord
 			:nationality,
 			:gender,
 			:language,
+			:english_level,
 			:arrival_date,
 			:arrival_location,
 			:regional_asylum_office,
