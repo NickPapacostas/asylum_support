@@ -33,6 +33,9 @@
 
     <div class="column col-lg-7">
     	<h3>Recent Activity</h3>
+      <% if @activities.empty? %>
+        No Activity yet...
+      <% else %>
       <table class="table">
         <head>
           <tr>
@@ -55,6 +58,7 @@
           <% end %>
         </tbody>
       </table>
+      <% end %>
     </div>
 	</div>
 </div>
