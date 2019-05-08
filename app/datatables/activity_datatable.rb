@@ -17,7 +17,7 @@ class ActivityDatatable < ApplicationDatatable
       # case_number_link = link_to(record.trackable_id, case_path(record.trackable_id))
       {
         updated_at: record.updated_at,
-        case_number: record.trackable_id,
+        case_number: link_to(record.trackable_id, case_path(record.trackable_id)),
         activity_type: record.case_activity_type,
         notes: record.notes
       }

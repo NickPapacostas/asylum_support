@@ -77,10 +77,17 @@ body {
 }
 
 .dashboard-case-input {
-	float: right;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
-h1, h2 {
+.dashboard-divider {
+	margin-top: 20px;
+	margin-bottom: 30px;
+
+}
+
+h1, h2, h3 {
 	font-style: italic;
 }
 
@@ -98,17 +105,8 @@ h1, h2 {
 	background-color: red;
 }
 
-.grid-container {
-	grid-gap: 10px;
-	margin: 20px;
-}
-
-.case-find-form {
-	/*margin: 40px;*/
-}
-
 .new-case-button {
-	/*float: left;*/
+	margin-right: 40px;
 }
 
 #case-save {
@@ -120,4 +118,26 @@ h1, h2 {
 
 .modal-container {
 	border: 1px solid black;
+}
+
+.caseworker-select {
+	margin: 20px;
+}
+
+.multi-check {
+	margin-left: 20px;
+}
+
+.collection-label {
+	font-size: 1.3em;
+	margin-bottom: 20px;
+}
+
+.collection-select {
+	margin-bottom: 20px;
+}
+
+.dashboard-buttons {
+	display: flex;
+	justify-content: center;
 }

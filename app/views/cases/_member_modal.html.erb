@@ -26,7 +26,7 @@
 
           <div class="column col-4">
             <%= member_form.label "Nationality:", class: "form-label" %>
-            <%= member_form.text_field :nationality, class: "form-input", type: 'email' %>
+            <%= member_form.collection_select :nationality, ["Afghan", "Kurdish", "Syrian", "Iraqi"], :to_s, :to_s, {}, class: "form-input" %>
           </div>
 
           <div class="column col-4">
@@ -36,7 +36,12 @@
 
           <div class="column col-4">
             <%= member_form.label "Language:", class: "form-label" %>
-            <%= member_form.text_field :language, class: "form-input" %>
+            <%= member_form.collection_select :language, ["Afghan", "Kurdish", "Syrian", "Iraqi"], :to_s, :to_s, {}, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "English Level:", class: "form-label" %>
+            <%= member_form.collection_select :english_level, ["None", "Poor", "Conversational", "Excellent"], :to_s, :to_s, {}, class: "form-input" %>
           </div>
 
           <div class="column col-4">
@@ -50,8 +55,8 @@
           </div>
 
 
-          <div class="form-group">
-            <%= member_form.label "Government case #:", class: "form-label" %>
+          <div class="column col-4">
+            <%= member_form.label "Asylum case #:", class: "form-label" %>
             <%= member_form.text_field :case_number, label: "Government case number", class: "form-input" %>
           </div>
 
@@ -66,20 +71,52 @@
           </div>
 
           <hr>
-          <div class="column col-12">
-            <%= member_form.label "Legal Statuses:", class: "form-label" %>
-            <%= member_form.collection_check_boxes(:legal_status, Member.legal_status_options, :to_s, :to_s, class: "form-input") %>
+
+          <div class="column col-12 collection-select">
+            <%= member_form.label "Legal Status", class: "form-label collection-label" %>
+            <div class="container">
+              <div class="columns">
+                <%= member_form.collection_check_boxes(:legal_status, Member.legal_status_options, :to_s, :to_s) do |b| %>
+                    <div class="column col-2">
+                      <%= b.label class:"form-label" do%>
+                      <%= b.check_box + " " +  b.text%>
+                      <%end%>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+
           </div>
-          <hr>
-          <div class="column col-12">
-            <%= member_form.label "Vulnerabilities:", class: "form-label" %>
-            <%= member_form.collection_check_boxes(:vulnerabilities, Member.vulnerability_options, :to_s, :to_s, class: "form-input") %>
+          <div class="column col-12 collection-select">
+            <%= member_form.label "Vulnerabilities", class: "form-label collection-label" %>
+
+            <div class="container">
+              <div class="columns">
+                <%= member_form.collection_check_boxes(:vulnerabilities, Member.vulnerability_options, :to_s, :to_s) do |b| %>
+                    <div class="column col-2">
+                      <%= b.label class:"form-label" do%>
+                      <%= b.check_box + " " +  b.text%>
+                      <%end%>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+
           </div>
 
-          <hr>
-          <div class="column col-12">
-            <%= member_form.label "Housing:", class: "form-label" %>
-            <%= member_form.collection_check_boxes(:housing, Member.housing_options, :to_s, :to_s, class: "form-input") %>
+          <div class="column col-12 collection-select">
+            <%= member_form.label "Housing", class: "form-label collection-label" %>
+            <div class="container">
+              <div class="columns">
+                <%= member_form.collection_check_boxes(:housing, Member.housing_options, :to_s, :to_s) do |b| %>
+                    <div class="column col-2">
+                      <%= b.label class:"form-label" do%>
+                      <%= b.check_box + " " +  b.text%>
+                      <%end%>
+                    </div>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>

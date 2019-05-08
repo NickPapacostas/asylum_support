@@ -1,37 +1,34 @@
 class CaseDatatable < ApplicationDatatable
+  def_delegator :@view, :link_to
+  def_delegator :@view, :case_path
+
 
   def view_columns
     @view_columns ||= {
       number: { source: "Case.id", searchable: true, orderable: true },
-      first_name: { source: "Member.first_name", cond: :like, searchable: true, orderable: true },
-      last_name:  { source: "Member.last_name",  cond: :like, searchable: true, orderable: true },
+      member_name: { source: "Member.first_name", cond: :like, searchable: true, orderable: true },
       caseworker:  { source: "Caseworker.last_name",  cond: :like, searchable: true, orderable: true },
-      last_updated:  { source: "Case.updated_at",  cond: :like }
+      last_updated:  { source: "Case.updated_at"}
     }
   end
 
 
-  def_delegators :@view, :link_to
-
   def data
     records.map do |record|
-      first_name = record.members.first.try(:first_name)
-      last_name = record.members.first.try(:last_name)
+      member_name = record.members.last.try(:full_name)
 
       {
         # example:
-        number: record.id,
-        first_name: first_name,
-        last_name: last_name,
+        number: link_to(record.id, case_path(record.id)),
+        member_name: member_name,
         caseworker: record.caseworker.full_name,
-        last_updated: record.updated_at,
+        last_updated: record.updated_at.localtime.strftime("%A %B %d %H:%M"),
       }
     end
   end
 
   def get_raw_records
     # insert query here
-    puts
     Case.all.includes(:members, :caseworker).references(:members) #.includes(:point_of_contact)
   end
 

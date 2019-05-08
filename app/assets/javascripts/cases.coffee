@@ -5,13 +5,13 @@ ready = ->
       {className: "text-center", "targets": "_all"}
     ],
     processing: true
+    bLengthChange: false
+    bInfo:false
     serverSide: true
     ajax: $('#cases-datatable').data('source')
-    pagingType: 'full_numbers'
     columns: [
       {data: 'number'}
-      {data: 'first_name'}
-      {data: 'last_name'}
+      {data: 'member_name'}
       {data: 'caseworker'}
       {data: 'last_updated'}
     ]

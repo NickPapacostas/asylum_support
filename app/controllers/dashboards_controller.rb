@@ -3,6 +3,6 @@ class DashboardsController < ApplicationController
 
 	def show
 		@caseworker = current_caseworker
-		@activities = PublicActivity::Activity.order(updated_at: :desc).limit(10)
+		@activities = PublicActivity::Activity.where(owner_id: @caseworker.id).order(updated_at: :desc).limit(10)
 	end
 end
