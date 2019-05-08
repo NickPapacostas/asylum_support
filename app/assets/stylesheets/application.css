@@ -141,3 +141,8 @@ h1, h2, h3 {
 	display: flex;
 	justify-content: center;
 }
+
+
+.paginate_button {
+	margin: 5px;
+}
