@@ -8,7 +8,7 @@ class CaseDatatable < ApplicationDatatable
       number: { source: "Case.id", searchable: true, orderable: true },
       member_name: { source: "Member.first_name", cond: :like, searchable: true, orderable: true },
       caseworker:  { source: "Caseworker.last_name",  cond: :like, searchable: true, orderable: true },
-      last_updated:  { source: "Case.updated_at",  cond: :like }
+      last_updated:  { source: "Case.updated_at"}
     }
   end
 
@@ -22,7 +22,7 @@ class CaseDatatable < ApplicationDatatable
         number: link_to(record.id, case_path(record.id)),
         member_name: member_name,
         caseworker: record.caseworker.full_name,
-        last_updated: record.updated_at,
+        last_updated: record.updated_at.localtime.strftime("%A %B %d %H:%M"),
       }
     end
   end

@@ -26,7 +26,7 @@
 
           <div class="column col-4">
             <%= member_form.label "Nationality:", class: "form-label" %>
-            <%= member_form.text_field :nationality, class: "form-input", type: 'email' %>
+            <%= member_form.collection_select :nationality, ["Afghan", "Kurdish", "Syrian", "Iraqi"], :to_s, :to_s, {}, class: "form-input" %>
           </div>
 
           <div class="column col-4">
@@ -36,7 +36,12 @@
 
           <div class="column col-4">
             <%= member_form.label "Language:", class: "form-label" %>
-            <%= member_form.text_field :language, class: "form-input" %>
+            <%= member_form.collection_select :language, ["Afghan", "Kurdish", "Syrian", "Iraqi"], :to_s, :to_s, {}, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "English Level:", class: "form-label" %>
+            <%= member_form.collection_select :english_level, ["None", "Poor", "Conversational", "Excellent"], :to_s, :to_s, {}, class: "form-input" %>
           </div>
 
           <div class="column col-4">
@@ -50,8 +55,8 @@
           </div>
 
 
-          <div class="form-group">
-            <%= member_form.label "Government case #:", class: "form-label" %>
+          <div class="column col-4">
+            <%= member_form.label "Asylum case #:", class: "form-label" %>
             <%= member_form.text_field :case_number, label: "Government case number", class: "form-input" %>
           </div>
 
