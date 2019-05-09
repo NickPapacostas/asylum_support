@@ -17,13 +17,24 @@
 		<div class="grid-container">
 			<%= f.nested_fields_for :members do |member_form| %>
 				<div class="grid-item">
-		    	<% if member_form.object.first_name || member_form.object.last_name %>
-						<%= "#{member_form.object.first_name} #{member_form.object.last_name}" %>
+		    	<% if member_form.object.id %>
+		    		<div>
+							<%= "#{member_form.object.first_name} #{member_form.object.last_name}" %>
+		    		</div>
+		    		<div>
+		    			<% dob_value = member_form.object.date_of_birth ? member_form.object.date_of_birth.to_date : nil %>
+							<%= dob_value %>
+		    		</div>
+		    		<div>
+							<%= "#{member_form.object.nationality}" %>
+		    		</div>
 					<% else %>
 						<%= f.label "No name yet", class: 'form-label' %>
 					<% end %>
-					<%= link_to "Edit", "#", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal", "data-target" => "#member-modal-#{member_form.object.id || '1'}"} %>
-					<%= member_form.remove_nested_fields_link 'Remove', class: "btn btn-cancel" %>
+					<div class="member-actions">
+						<%= link_to "Edit", "#", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal", "data-target" => "#member-modal-#{member_form.object.id || '1'}"} %>
+						<%= member_form.remove_nested_fields_link 'Remove', class: "btn btn-cancel" %>
+					</div>
 					<%= render partial: 'member_modal', locals: {member_form: member_form, case_persisted: !the_case.id.nil? } %>
 				</div>
 			<% end %>

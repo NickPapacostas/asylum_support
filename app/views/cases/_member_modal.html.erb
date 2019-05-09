@@ -21,7 +21,8 @@
 
           <div class="column col-4">
             <%= member_form.label "Date of birth", class: "form-label" %>
-            <%= member_form.datetime_field :date_of_birth, class: "form-input" %>
+            <% dob_value = member_form.object.date_of_birth ? member_form.object.date_of_birth.to_date : nil %>
+            <%= member_form.text_field :date_of_birth, {class: "form-input", type: "date", value: dob_value}%>
           </div>
 
           <div class="column col-4">
@@ -36,7 +37,7 @@
 
           <div class="column col-4">
             <%= member_form.label "Language", class: "form-label" %>
-            <%= member_form.collection_select :language, ["Afghan", "Kurdish", "Syrian", "Iraqi"], :to_s, :to_s, {}, class: "form-input" %>
+            <%= member_form.text_field :language, class: "form-input" %>
           </div>
 
           <div class="column col-4">

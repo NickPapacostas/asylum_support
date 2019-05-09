@@ -54,7 +54,8 @@ class Member < ApplicationRecord
 			"Refused 1st appeal",
 			"Refused 2nd appeal",
 			"Refused undocumented",
-			"Fresh Claim"
+			"Fresh Claim",
+			"None"
 		]
 	end
 
@@ -69,7 +70,61 @@ class Member < ApplicationRecord
 		]
 	end
 
-  def full_name
-  	"#{first_name} #{last_name}"
-  end
+	def self.nationalties
+		["Syria",
+			"Bangladesh",
+			"Pakistan",
+			"India",
+			"Sri Lanka",
+			"Myanmar",
+			"Balochistan",
+			"Afghanistan",
+			"Kurdistan (Iraq)",
+			"Kurdistan (Iran)",
+			"Kurdistan (Syria)",
+			"Kurdistan (Turkey)",
+			"Iran",
+			"Iraq",
+			"Kuwait",
+			"Yemen",
+			"Turkey",
+			"Lebanon",
+			"Egypt",
+			"Palestine",
+			"Jordan",
+			"Libya",
+			"Algeria",
+			"Tunisia",
+			"Morocco",
+			"Western Sahara",
+			"DR Congo",
+			"Central African Republic",
+			"Cameroon",
+			"Ivory Coast",
+			"Guinea",
+			"Nigeria",
+			"Senegal",
+			"Gambia",
+			"Burkina Faso",
+			"Benin",
+			"Ghana",
+			"Sierra Leone",
+			"Somalia",
+			"Ethiopia",
+			"Eritrea",
+			"South Sudan",
+			"Sudan",
+			"Rwanda",
+			"Burundi",
+			"Albania"
+		]
+	end
+
+	def country_of_origin
+		nationality
+	end
+
+	def full_name
+		"#{first_name} #{last_name}"
+	end
 end
