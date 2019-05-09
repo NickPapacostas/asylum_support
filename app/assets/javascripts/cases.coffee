@@ -12,6 +12,9 @@ ready = ->
     columns: [
       {data: 'number'}
       {data: 'member_name'}
+      {data: 'member_dob'}
+      {data: 'member_nationality'}
+      {data: 'member_case_number'}
       {data: 'caseworker'}
       {data: 'last_updated'}
     ]

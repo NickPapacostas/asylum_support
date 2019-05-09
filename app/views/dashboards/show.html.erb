@@ -14,13 +14,16 @@
   <div class="dashboard-divider divider"></div>
 
 	<div class="columns">
-		<div class="column col-lg-5">
+		<div class="column col-lg-7">
     	<h3>Cases</h3>
       <table id="cases-datatable" data-source="<%= cases_path(format: :json) %>" class="table table-striped table-hover">
         <thead>
           <tr>
             <th>Case number</th>
             <th>Member Name</th>
+            <th>Member DOB</th>
+            <th>Member Nationality</th>
+            <th>Asylum Case #</th>
             <th>Caseworker</th>
             <th>Last Updated</th>
           </tr>
@@ -31,7 +34,7 @@
 		</div>
     <div class="divider-vert"></div>
 
-    <div class="column col-lg-7">
+    <div class="column col-lg-4">
     	<h3>Recent Activity</h3>
       <% if @activities.empty? %>
         No Activity yet...
