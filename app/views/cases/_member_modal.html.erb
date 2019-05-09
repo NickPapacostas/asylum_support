@@ -41,7 +41,11 @@
 
           <div class="column col-4">
             <%= member_form.label "Language", class: "form-label" %>
-            <%= member_form.text_field :language, class: "form-input" %>
+            <%= member_form.text_field :language, {class: "form-input", list: "nationalities"} %>
+            <datalist id="nationalities">
+              <% Member.nationalities.each do |n| %>
+                <option value=<%= n %> >
+              <% end %>
           </div>
 
           <div class="column col-4">
