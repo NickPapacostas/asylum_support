@@ -1,11 +1,19 @@
+
+
 <div class="case-form">
 	<%= form_for(the_case) do |f| %>
 
-		<div class='caseworker-select'>
-		Caseworker:
-	  <%= f.collection_select(:caseworker_id, Caseworker.all, :id, :full_name, prompt: true) %>
-
+		<div class="form-group">
+			<label class="">
+				Case active: <%= f.check_box(:active) %>
+			</label>
 		</div>
+
+		<div class='caseworker-select'>
+			Caseworker:
+		  <%= f.collection_select(:caseworker_id, Caseworker.all, :id, :full_name, prompt: true) %>
+		</div>
+
 
   	<%= f.text_area :description, placeholder: "Brief Overview..." %>
 

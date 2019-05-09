@@ -80,6 +80,6 @@ class CasesController < ApplicationController
 	end
 
 	def case_params
-		params.require(:case).permit(:description, members_attributes: Member.strong_params, files: [])
+		params.require(:case).permit(:description, :active, members_attributes: Member.strong_params, files: [])
 	end
 end
