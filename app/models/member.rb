@@ -127,4 +127,9 @@ class Member < ApplicationRecord
 	def full_name
 		"#{first_name} #{last_name}"
 	end
+
+	def display_birthdate
+		return nil unless date_of_birth
+		date_of_birth.strftime("%d/%m/%Y")
+	end
 end

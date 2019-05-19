@@ -20,7 +20,7 @@ class CaseDatatable < ApplicationDatatable
     records.map do |record|
       if member = record.members.first
         member_name = member.full_name
-        member_dob = member.date_of_birth
+        member_dob = member.display_birthdate
         member_nationality = member.nationality
         member_case_number = member.case_number
       end
@@ -28,8 +28,8 @@ class CaseDatatable < ApplicationDatatable
       {
         # example:
         number: link_to(record.id, case_path(record.id)),
-        member_name: member_name,
-        member_name: member_name,
+        member_name: link_to(member_name, case_path(record.id)),
+        member_name: link_to(member_name, case_path(record.id)),
         member_dob: member_dob,
         member_nationality: member_nationality,
         member_case_number: member_case_number,
