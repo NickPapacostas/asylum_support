@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_202217) do
+ActiveRecord::Schema.define(version: 2019_05_19_203737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2019_05_19_202217) do
     t.datetime "updated_at", null: false
     t.string "case_activity_type"
     t.text "notes"
+    t.string "tags", default: [], array: true
+    t.datetime "relevant_future_datetime"
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
     t.index ["owner_type", "owner_id"], name: "index_activities_on_owner_type_and_owner_id"
     t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"

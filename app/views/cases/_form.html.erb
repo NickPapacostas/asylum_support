@@ -117,18 +117,20 @@
     				<table class="table">
     					<head>
     						<tr>
-    							<th scope="col">Date & time</th>
-    							<th scope="col">Caseworker</th>
     							<th scope="col">Type</th>
+    							<th scope="col">Future date</th>
+    							<th scope="col">Date created</th>
+    							<th scope="col">Caseworker</th>
     							<th scope="col">Notes</th>
     						</tr>
     					</head>
     					<tbody>
     						<% @activities.each do |a| %>
 	    						<tr>
-	    							<td><%= a.updated_at %></td>
-	    							<td><%= a.owner.full_name %></td>
 	    							<td><%= a.case_activity_type %></td>
+	    							<td><%= display_datetime(a.relevant_future_datetime) %></td>
+	    							<td><%= display_datetime(a.updated_at) %></td>
+	    							<td><%= a.owner.full_name %></td>
 	    							<td><%= a.notes %></td>
 	    						</tr>
     						<% end %>

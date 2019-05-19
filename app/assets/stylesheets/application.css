@@ -150,3 +150,7 @@ h1, h2, h3 {
 .member-actions {
 	margin-top: 10px;
 }
+
+.modal .form-label {
+	margin-top: 10px;
+}

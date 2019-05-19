@@ -63,6 +63,7 @@ class CasesController < ApplicationController
 			'activity_created',
 			owner: current_caseworker,
 			case_activity_type: activity_params[:case_activity_type],
+			relevant_future_datetime: activity_params[:relevant_future_datetime],
 			notes: activity_params[:notes]
 			)
 		redirect_to case_path(@case)
@@ -76,7 +77,7 @@ class CasesController < ApplicationController
 	private
 
 	def activity_params
-		params.require(:public_activity_activity).permit(:case_activity_type, :notes)
+		params.require(:public_activity_activity).permit(:case_activity_type, :notes, :relevant_future_datetime)
 	end
 
 	def case_params
