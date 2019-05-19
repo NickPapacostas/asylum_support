@@ -12,6 +12,7 @@ class CaseActivity
 			"Accompaniment to UNHCR",
 			"Accompaniment to Solidarity Now",
 			"Accompaniment to Other",
+			"Collection from GAS",
 			"Referral to Housing",
 			"Referral to Squat",
 			"Referral to Lawyer",
