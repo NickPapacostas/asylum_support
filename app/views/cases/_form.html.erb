@@ -40,7 +40,8 @@
 						<%= f.label "No name yet", class: 'form-label' %>
 					<% end %>
 					<div class="member-actions">
-						<%= link_to "Edit", "#", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal", "data-target" => "#member-modal-#{member_form.object.id || '1'}"} %>
+						<%= f.submit "Save", {class: 'btn btn-primary'} %>
+						<%= link_to "Edit", "#", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal"} %>
 						<%= member_form.remove_nested_fields_link 'Remove', class: "btn btn-cancel" %>
 					</div>
 					<%= render partial: 'member_modal', locals: {member_form: member_form, case_persisted: !the_case.id.nil? } %>
