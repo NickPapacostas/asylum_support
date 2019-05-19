@@ -20,7 +20,7 @@
 					  <% unless the_case.caseworkers.empty? %>
 					  	<div class="associated-caseworker-header">Associated caseworkers</div>
 						  <ul class="associated-caseworkers">
-						  	<% the_case.case_caseworkers.each do |case_caseworker| %>
+						  	<% the_case.case_caseworkers.reject {|cw| cw.caseworker.full_name == "" }.each do |case_caseworker| %>
 						  		<li>
 						  			<%= case_caseworker.caseworker.full_name %>
 						  			<span class="delete-caseworker" data-caseworker_id="<%= case_caseworker.id %>">x</span>
@@ -32,7 +32,7 @@
 					  	<div class="add-caseworker">
 						  	<%= fields_for :case, @case.case_caseworkers.build do |ccw| %>
 						  		<%= f.label("Select a caseworker to add", class: "form-label") %>
-						  		<%= ccw.collection_select(:caseworker, Case.unrelated_caseworkers(the_case.id), :id, :full_name, {}, {name: "case[case_caseworkers_attributes][0][caseworker_id]"}) %>
+						  		<%= ccw.collection_select(:caseworker, Case.unrelated_caseworkers(the_case.id), :id, :full_name, {prompt: true}, {name: "case[case_caseworkers_attributes][0][caseworker_id]"}) %>
 						  	<% end %>
 					  	</div>
 							  <%= f.submit "Add caseworker", {class: 'btn', id: 'case-save'} %>
@@ -142,7 +142,7 @@
   			<div class="column col-12">
   				<%= render partial: 'new_activity', locals: {the_case: @case, activities: @activities} %>
   			</div>
-	  		<% if !activities.empty?  %>
+	  		<% if !the_case.activities.empty?  %>
     			<div class="column col-12">
 		  			<div class="divider big-divider"></div>
     				<h3>Recent</h3>
@@ -157,12 +157,12 @@
     						</tr>
     					</head>
     					<tbody>
-    						<% @activities.each do |a| %>
+    						<% the_case.activities.each do |a| %>
 	    						<tr>
 	    							<td><%= a.case_activity_type %></td>
 	    							<td><%= display_datetime(a.relevant_future_datetime) %></td>
 	    							<td><%= display_datetime(a.updated_at) %></td>
-	    							<td><%= a.owner.full_name %></td>
+	    							<td><%= a.owner.try(:full_name) %></td>
 	    							<td><%= a.notes %></td>
 	    						</tr>
     						<% end %>
