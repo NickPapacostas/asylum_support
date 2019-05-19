@@ -1,21 +1,53 @@
 
 
 <div class="case-form">
-	<%= form_for(the_case) do |f| %>
+	<%= simple_form_for(the_case) do |f| %>
 
 		<div class="form-group">
 			<label class="">
 				Case active: <%= f.check_box(:active) %>
 			</label>
 		</div>
+		<hr>
 
-		<div class='caseworker-select'>
-			Caseworker:
-		  <%= f.collection_select(:caseworker_id, Caseworker.all, :id, :full_name, prompt: true) %>
+		<div class="container">
+			<div class="columns">
+				<div class="column col-3">
+					<div class='caseworker-select'>
+					  <%= f.label "Lead Caseworker", class: "form-label" %>
+					  <%= f.collection_select(:caseworker_id, Caseworker.all, :id, :full_name, prompt: true) %>
+
+					  <% unless the_case.caseworkers.empty? %>
+					  	<div class="associated-caseworker-header">Associated caseworkers</div>
+						  <ul class="associated-caseworkers">
+						  	<% the_case.case_caseworkers.each do |case_caseworker| %>
+						  		<li>
+						  			<%= case_caseworker.caseworker.full_name %>
+						  			<span class="delete-caseworker" data-caseworker_id="<%= case_caseworker.id %>">x</span>
+						  		</li>
+						  	<% end %>
+						  </ul>
+						<% end %>
+					  <% unless Case.unrelated_caseworkers(the_case.id).empty? %>
+					  	<div class="add-caseworker">
+						  	<%= fields_for :case, @case.case_caseworkers.build do |ccw| %>
+						  		<%= f.label("Select a caseworker to add", class: "form-label") %>
+						  		<%= ccw.collection_select(:caseworker, Case.unrelated_caseworkers(the_case.id), :id, :full_name, {}, {name: "case[case_caseworkers_attributes][0][caseworker_id]"}) %>
+						  	<% end %>
+					  	</div>
+							  <%= f.submit "Add caseworker", {class: 'btn', id: 'case-save'} %>
+
+						<% end %>
+					</div>
+				</div>
+				<div class="column col-9">
+			  	<%= f.label "Description", {class: "form-label", placeholder: "Brief Overview..."} %>
+			  	<%= f.text_area :description, placeholder: "Brief Overview..." %>
+				</div>
+			</div>
 		</div>
 
 
-  	<%= f.text_area :description, placeholder: "Brief Overview..." %>
 
 		<div class="divider big-divider"></div>
 

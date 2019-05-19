@@ -2,10 +2,12 @@ class CasesController < ApplicationController
 	def new
 		@case = Case.new
 		@case.members
+		@case.case_caseworkers.build
 	end
 
 	def edit
 		@case = Case.find(params[:id])
+		@case.case_caseworkers.build
 		@activities = @case.activities
 	end
 
@@ -81,6 +83,6 @@ class CasesController < ApplicationController
 	end
 
 	def case_params
-		params.require(:case).permit(:description, :active, :caseworker_id, members_attributes: Member.strong_params, files: [])
+		params.require(:case).permit(:description, :active, :caseworker_id, case_caseworkers_attributes: [:caseworker_id], members_attributes: Member.strong_params, files: [])
 	end
 end

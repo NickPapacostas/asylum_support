@@ -22,6 +22,10 @@ body {
 	background-color: #fbfbfc;
 }
 
+.success {
+	color: green;
+}
+
 .big-divider {
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -108,7 +112,7 @@ h1, h2, h3 {
 }*/
 
 #case_description {
-	width: 70%;
+	width: 90%;
 	min-height: 200px;
 }
 
@@ -164,4 +168,17 @@ h1, h2, h3 {
 
 .modal .form-label {
 	margin-top: 10px;
+}
+
+.associated-caseworker-header {
+	margin-top: 30px;
+}
+
+.delete-caseworker {
+	cursor: pointer;
+	color: red;
+}
+
+.add-caseworker {
+	margin-top: 30px;
 }

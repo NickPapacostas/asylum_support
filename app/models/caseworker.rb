@@ -4,6 +4,10 @@ class Caseworker < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+  has_many :case_caseworkers
+  has_many :cases, through: :case_caseworkers
+
   def full_name
   	"#{first_name} #{last_name}"
   end

@@ -45,6 +45,7 @@ gem 'nested_form_fields'
 gem 'chosen-rails'
 gem 'jquery-datatables'
 gem 'ajax-datatables-rails'
+gem 'simple_form'
 
 gem 'aws-sdk-s3', require: false
 
