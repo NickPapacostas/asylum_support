@@ -52,6 +52,17 @@ body {
   text-align: center;
 }
 
+.activity-grid-container {
+  display: grid;
+  grid-template-columns: auto auto 50%;
+  justify-content: center;
+}
+
+.activity-grid-item {
+  /*text-align: center;*/
+  margin: 20px;
+}
+
 .cancel {
 	float: right;
 }
