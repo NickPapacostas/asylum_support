@@ -8,6 +8,7 @@ ready = ->
     bLengthChange: false
     bInfo:false
     serverSide: true
+    order: [[1, "asc"]]
     ajax: $('#cases-datatable').data('source')
     columns: [
       {data: 'number'}
