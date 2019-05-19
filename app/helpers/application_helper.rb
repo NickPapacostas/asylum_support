@@ -7,4 +7,9 @@ module ApplicationHelper
 			link_to link_text, link_path
 		end
 	end
+
+	def display_datetime(datetime)
+		return nil unless datetime
+		datetime.strftime("%d/%m/%Y")
+	end
 end

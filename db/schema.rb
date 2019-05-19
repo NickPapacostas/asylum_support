@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_190037) do
+ActiveRecord::Schema.define(version: 2019_05_19_172004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,14 +122,19 @@ ActiveRecord::Schema.define(version: 2019_05_09_190037) do
     t.string "nationality"
     t.string "gender"
     t.string "language"
-    t.datetime "arrival_date"
+    t.date "arrival_date"
     t.string "arrival_location"
     t.string "regional_asylum_office"
-    t.boolean "geographic_restriction", default: false
     t.string "legal_status", default: [], array: true
     t.string "vulnerabilities", default: [], array: true
     t.string "housing", default: [], array: true
     t.string "english_level"
+    t.date "interview_date"
+    t.date "appeal_date"
+    t.boolean "amka"
+    t.boolean "afm"
+    t.boolean "bank_account"
+    t.boolean "geographic_restriction"
     t.index ["case_id"], name: "index_members_on_case_id"
   end
 

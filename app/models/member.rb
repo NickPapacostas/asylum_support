@@ -3,6 +3,21 @@ class Member < ApplicationRecord
 
 	has_one :case
 
+	def self.asylum_office_options
+		[
+			"",
+			"Katehaki",
+			"Piraeus",
+			"Alimos",
+			"Thessaloniki",
+			"Lesvos",
+			"Samos",
+			"Chios",
+			"Kos",
+			"Leros"
+		]
+	end
+
 	def self.strong_params
 		[
 			:id,
@@ -24,6 +39,11 @@ class Member < ApplicationRecord
 			:arrival_location,
 			:regional_asylum_office,
 			:geographic_restriction,
+			:interview_date,
+			:appeal_date,
+			:amka,
+			:afm,
+			:bank_account,
 			legal_status: [],
 			vulnerabilities: [],
 			housing: []
@@ -132,4 +152,14 @@ class Member < ApplicationRecord
 		return nil unless date_of_birth
 		date_of_birth.strftime("%d/%m/%Y")
 	end
+
+  before_validation :set_dates
+
+  def set_dates
+  	self.arrival_date = Date.parse(arrival_date.to_s) if arrival_date
+  	self.interview_date = Date.parse(interview_date.to_s) if interview_date
+  	self.interview_date = Date.parse(interview_date.to_s) if interview_date
+  	self.appeal_date = Date.parse(appeal_date.to_s) if appeal_date
+  end
+
 end

@@ -25,20 +25,30 @@
 		<div class="grid-container">
 			<%= f.nested_fields_for :members do |member_form| %>
 				<div class="grid-item">
-		    	<% if member_form.object.id %>
-		    		<div>
-							<%= "#{member_form.object.first_name} #{member_form.object.last_name}" %>
-		    		</div>
-		    		<div>
-		    			<% dob_value = member_form.object.date_of_birth ? member_form.object.date_of_birth.to_date : nil %>
-							<%= dob_value %>
-		    		</div>
-		    		<div>
-							<%= "#{member_form.object.nationality}" %>
-		    		</div>
-					<% else %>
-						<%= f.label "No name yet", class: 'form-label' %>
-					<% end %>
+	    		<div>
+		        <%= member_form.label "First name", class: "form-label" %>
+    	      <%= member_form.text_field :first_name, class: "form-input" %>
+	    		</div>
+
+	    		<div>
+		        <%= member_form.label "Last name", class: "form-label" %>
+    	      <%= member_form.text_field :last_name, class: "form-input" %>
+	    		</div>
+
+	    		<div>
+	          <%= member_form.label "Date of birth", class: "form-label" %>
+        	  <% dob_value = member_form.object.date_of_birth ? member_form.object.date_of_birth.to_date : nil %>
+      	    <%= member_form.text_field :date_of_birth, {class: "form-input", type: "date", value: dob_value}%>
+					</div>
+
+	    		<div>
+	    			<%= member_form.label "Nationality", class: "form-label" %>
+        		<%= member_form.text_field :nationality, {class: "form-input", list: "nationalities"} %>
+	            <datalist id="nationalities">
+	              <% Member.nationalities.each do |n| %>
+	                <option value=<%= n %> >
+	              <% end %>
+	  		  </div>
 					<div class="member-actions">
 						<%= f.submit "Save", {class: 'btn btn-primary'} %>
 						<%= link_to "Edit", "#", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal"} %>
@@ -97,11 +107,12 @@
 
   	<div class="container">
   		<div class="columns">
-  			<div class="column col-4">
+  			<div class="column col-12">
   				<%= render partial: 'new_activity', locals: {the_case: @case, activities: @activities} %>
   			</div>
 	  		<% if !activities.empty?  %>
-    			<div class="column col-7">
+    			<div class="column col-12">
+		  			<div class="divider big-divider"></div>
     				<h3>Recent</h3>
     				<table class="table">
     					<head>

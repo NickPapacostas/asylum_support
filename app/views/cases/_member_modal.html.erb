@@ -1,4 +1,4 @@
-<div class="modal modal-lg" id="member-modal-<%= member_form.object.id || '1' %>">
+<div class="modal modal-lg member-modal">
   <div class="modal-container">
     <div class="modal-header">
       <h5 class="modal-title" id="member-modal--title"></h5>
@@ -9,30 +9,7 @@
     <div class="modal-body">
       <div class="container">
         <div class="columns">
-          <div class="column col-4">
-            <%= member_form.label "First name", class: "form-label" %>
-            <%= member_form.text_field :first_name, class: "form-input" %>
-          </div>
 
-          <div class="column col-4">
-            <%= member_form.label "Last name", class: "form-label" %>
-            <%= member_form.text_field :last_name, class: "form-input" %>
-          </div>
-
-          <div class="column col-4">
-            <%= member_form.label "Date of birth", class: "form-label" %>
-            <% dob_value = member_form.object.date_of_birth ? member_form.object.date_of_birth.to_date : nil %>
-            <%= member_form.text_field :date_of_birth, {class: "form-input", type: "date", value: dob_value}%>
-          </div>
-
-          <div class="column col-4">
-            <%= member_form.label "Nationality", class: "form-label" %>
-            <%= member_form.text_field :nationality, {class: "form-input", list: "nationalities"} %>
-            <datalist id="nationalities">
-              <% Member.nationalities.each do |n| %>
-                <option value=<%= n %> >
-              <% end %>
-          </div>
 
           <div class="column col-4">
             <%= member_form.label "Gender", class: "form-label" %>
@@ -43,8 +20,8 @@
             <%= member_form.label "Language", class: "form-label" %>
             <%= member_form.text_field :language, {class: "form-input", list: "nationalities"} %>
             <datalist id="nationalities">
-              <% Member.nationalities.each do |n| %>
-                <option value=<%= n %> >
+              <% Member.nationalities.each_with_index do |n, ix| %>
+                <option value="<%= n.to_s %>" id="<% ix %>" ></option>
               <% end %>
           </div>
 
@@ -70,8 +47,13 @@
           </div>
 
           <div class="column col-4">
+            <%= member_form.label "Asylum office", class: "form-label" %>
+            <%= member_form.collection_select :regional_asylum_office, Member.asylum_office_options, :to_s, :to_s, {}, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
             <%= member_form.label "Arrival date (in Greece)", class: "form-label" %>
-            <%= member_form.text_field :arrival_date, class: "form-input" %>
+            <%= member_form.text_field :arrival_date, {class: "form-input", type: "date"}%>
           </div>
 
           <div class="column col-4">
@@ -79,6 +61,35 @@
             <%= member_form.text_field :arrival_location, class: "form-input" %>
           </div>
 
+          <div class="column col-4">
+            <%= member_form.label "Interview date", class: "form-label" %>
+            <%= member_form.text_field :interview_date, {class: "form-input", type: "date"}%>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Appeal/Examination date", class: "form-label" %>
+            <%= member_form.text_field :appeal_date, {class: "form-input", type: "date"}%>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Geographic restriction?", class: "form-label" %>
+            <%= member_form.check_box :geographic_restriction %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Has AMKA?", class: "form-label" %>
+            <%= member_form.check_box :amka %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Has AFM?", class: "form-label" %>
+            <%= member_form.check_box :afm %>
+          </div>
+
+          <div class="column col-4">
+            <%= member_form.label "Has bank account?", class: "form-label" %>
+            <%= member_form.check_box :bank_account %>
+          </div>
           <hr>
 
           <div class="column col-12 collection-select">
