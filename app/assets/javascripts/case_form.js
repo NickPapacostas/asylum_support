@@ -10,7 +10,6 @@ $(document).ready(function() {
 			complete: function(){
 				$('*[data-caseworker_id="' + caseCaseworkerID + '"]').parent().remove();
 				$('.flashes').append("<div class='flash success'>Caseworker removed from case</div>")
-				window.location.reload()
 			}
 		}
 		$.ajax(params)

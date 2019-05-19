@@ -20,7 +20,7 @@
 					  <% unless the_case.caseworkers.empty? %>
 					  	<div class="associated-caseworker-header">Associated caseworkers</div>
 						  <ul class="associated-caseworkers">
-						  	<% the_case.case_caseworkers.reject {|cw| cw.caseworker.full_name == "" }.each do |case_caseworker| %>
+						  	<% the_case.case_caseworkers.compact.select {|cw| cw.caseworker_id != nil }.each do |case_caseworker| %>
 						  		<li>
 						  			<%= case_caseworker.caseworker.full_name %>
 						  			<span class="delete-caseworker" data-caseworker_id="<%= case_caseworker.id %>">x</span>

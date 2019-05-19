@@ -2,12 +2,10 @@ class CasesController < ApplicationController
 	def new
 		@case = Case.new
 		@case.members
-		@case.case_caseworkers.build
 	end
 
 	def edit
 		@case = Case.find(params[:id])
-		@case.case_caseworkers.build
 		@activities = @case.activities
 	end
 
@@ -50,6 +48,7 @@ class CasesController < ApplicationController
 		@case = Case.find(params[:id])
 
 		if @case.update_attributes(case_params)
+			@case.case_caseworkers.select {|ccw| ccw.caseworker_id.nil? }.map(&:destroy)
 			@case.create_activity(key: 'case.updated', owner: current_caseworker, case_activity_type: "Case updated")
 			flash[:success] = "Case updated"
 			redirect_to case_path(@case)
