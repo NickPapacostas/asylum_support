@@ -44,6 +44,7 @@ class Member < ApplicationRecord
 			:amka,
 			:afm,
 			:bank_account,
+			:relation,
 			legal_status: [],
 			vulnerabilities: [],
 			housing: []

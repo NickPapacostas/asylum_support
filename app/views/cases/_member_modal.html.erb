@@ -72,6 +72,11 @@
           </div>
 
           <div class="column col-4">
+            <%= member_form.label "Familial Relationship", class: "form-label" %>
+            <%= member_form.text_field :relation, class: "form-input" %>
+          </div>
+
+          <div class="column col-4">
             <%= member_form.label "Geographic restriction?", class: "form-label" %>
             <%= member_form.check_box :geographic_restriction %>
           </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_172004) do
+ActiveRecord::Schema.define(version: 2019_05_19_202217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_172004) do
     t.boolean "afm"
     t.boolean "bank_account"
     t.boolean "geographic_restriction"
+    t.string "relation"
     t.index ["case_id"], name: "index_members_on_case_id"
   end
 
