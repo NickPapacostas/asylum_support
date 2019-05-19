@@ -5,7 +5,6 @@ ready = ->
       {className: "text-center", "targets": "_all"}
     ],
     processing: true
-    bLengthChange: false
     bInfo:false
     serverSide: true
     order: [[1, "asc"]]
