@@ -33,7 +33,6 @@ class CasesController < ApplicationController
 	def create
 		@case = Case.new(case_params)
 		@case.caseworker = current_caseworker unless @case.caseworker
-
 		if @case.save
 			@case.reload
 			@case.create_activity(key: 'case.created', owner: current_caseworker, case_activity_type: "Case created")

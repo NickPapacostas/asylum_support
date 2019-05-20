@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 2019_05_19_210734) do
   end
 
   create_table "case_caseworkers", force: :cascade do |t|
-    t.bigint "case_id", null: false
-    t.bigint "caseworker_id", null: false
+    t.bigint "case_id"
+    t.bigint "caseworker_id"
     t.boolean "lead_caseworker", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,4 +1,4 @@
 class CaseCaseworker < ApplicationRecord
-	belongs_to :case
-	belongs_to :caseworker
+	belongs_to :case, optional: true
+	belongs_to :caseworker, optional: true
 end
