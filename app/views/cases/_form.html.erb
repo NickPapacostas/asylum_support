@@ -75,11 +75,7 @@
 
 	    		<div>
 	    			<%= member_form.label "Nationality", class: "form-label" %>
-        		<%= member_form.text_field :nationality, {class: "form-input", list: "nationalities"} %>
-	            <datalist id="nationalities">
-	              <% Member.nationalities.each do |n| %>
-	                <option value=<%= n %> >
-	              <% end %>
+        		<%= member_form.collection_select :nationality, Member.nationalities, :to_s, :to_s, {}, {class: "form-input"} %>
 	  		  </div>
 					<div class="member-actions">
 						<%= f.submit "Save", {class: 'btn btn-primary'} %>
