@@ -10,7 +10,19 @@ class Case < ApplicationRecord
 
 	has_many :members, -> { order(:id) }, dependent: :destroy
   accepts_nested_attributes_for :members, allow_destroy: true
+
   has_many_attached :files
+
+  # has_many :linked_cases, foreign_key: :first_id
+
+  def member_name
+    members.try(:first).try(:full_name)
+  end
+
+  def member_nationality
+    members.try(:first).try(:nationality)
+  end
+
 
   def self.unrelated_caseworkers(case_id)
     if the_case = Case.find_by(id: case_id)

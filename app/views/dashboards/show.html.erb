@@ -65,3 +65,27 @@
     </div>
 	</div>
 </div>
+<div class="divider big-divider"></div>
+<div class="text-center">
+  <h3>All Your Cases</h3>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Case number</th>
+        <th>Member Name</th>
+        <th>Member Nationality</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @caseworker.all_cases.each do |the_case| %>
+        <tr>
+          <td><%= link_to(the_case.id, case_path(the_case)) %></td>
+          <td><%= link_to(the_case.member_name, case_path(the_case)) %></td>
+          <td><%= link_to(the_case.member_nationality, case_path(the_case)) %></td>
+          <td><%= link_to(display_datetime(the_case.updated_at), case_path(the_case)) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
