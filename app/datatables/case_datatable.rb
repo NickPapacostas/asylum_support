@@ -10,7 +10,7 @@ class CaseDatatable < ApplicationDatatable
       member_dob: { source: "Member.date_of_birth", orderable: true },
       member_nationality: { source: "Member.nationality", orderable: true },
       member_case_number: { source: "Member.case_number", cond: :like, searchable: true, orderable: true },
-      caseworker:  { source: "Caseworker.last_name",  cond: :like, searchable: true, orderable: true },
+      caseworker:  { source: "Caseworker.first_name",  cond: :like, searchable: true, orderable: true },
       last_updated:  { source: "Case.updated_at"}
     }
   end
