@@ -77,23 +77,27 @@
           </div>
 
           <div class="column col-4">
-            <%= member_form.label "Geographic restriction?", class: "form-label" %>
-            <%= member_form.check_box :geographic_restriction %>
+            <%= member_form.label "Geographic restriction:", class: "form-label" %>
+            <%= member_form.radio_button :geographic_restriction, true %> Yes
+            <%= member_form.radio_button :geographic_restriction, false %> No
           </div>
 
           <div class="column col-4">
-            <%= member_form.label "Has AMKA?", class: "form-label" %>
-            <%= member_form.check_box :amka %>
+            <%= member_form.label "AMKA:", class: "form-label" %>
+            <%= member_form.radio_button :amka, true %> Yes
+            <%= member_form.radio_button :amka, false %> No
           </div>
 
           <div class="column col-4">
-            <%= member_form.label "Has AFM?", class: "form-label" %>
-            <%= member_form.check_box :afm %>
+            <%= member_form.label "AFM:", class: "form-label" %>
+            <%= member_form.radio_button :afm, true %> Yes
+            <%= member_form.radio_button :afm, false %> No
           </div>
 
           <div class="column col-4">
-            <%= member_form.label "Has bank account?", class: "form-label" %>
-            <%= member_form.check_box :bank_account %>
+            <%= member_form.label "Bank account:", class: "form-label" %>
+            <%= member_form.radio_button :bank_account, true %> Yes
+            <%= member_form.radio_button :bank_account, false %> No
           </div>
           <hr>
 
