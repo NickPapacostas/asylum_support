@@ -70,13 +70,14 @@ class Member < ApplicationRecord
 		[
 			"Undocumented",
 			"Pre-registration card",
-			"White card",
-			"Refugee",
-			"Refused 1st appeal",
-			"Refused 2nd appeal",
-			"Refused undocumented",
+			"White Card",
+			"1st Appeal",
+			"2nd Appeal",
+			"Discontinued",
+			"Refused Undocumented",
 			"Fresh Claim",
-			"None"
+			"Refugee Status",
+			"NA"
 		]
 	end
 
@@ -154,13 +155,13 @@ class Member < ApplicationRecord
 		date_of_birth.strftime("%d/%m/%Y")
 	end
 
-  before_validation :set_dates
+	before_validation :set_dates
 
-  def set_dates
-  	self.arrival_date = Date.parse(arrival_date.to_s) if arrival_date
-  	self.interview_date = Date.parse(interview_date.to_s) if interview_date
-  	self.interview_date = Date.parse(interview_date.to_s) if interview_date
-  	self.appeal_date = Date.parse(appeal_date.to_s) if appeal_date
-  end
+	def set_dates
+		self.arrival_date = Date.parse(arrival_date.to_s) if arrival_date
+		self.interview_date = Date.parse(interview_date.to_s) if interview_date
+		self.interview_date = Date.parse(interview_date.to_s) if interview_date
+		self.appeal_date = Date.parse(appeal_date.to_s) if appeal_date
+	end
 
 end

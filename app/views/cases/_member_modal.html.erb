@@ -22,8 +22,9 @@
           </div>
 
           <div class="column col-4">
-            <%= member_form.label "English Level", class: "form-label" %>
-            <%= member_form.collection_select :english_level, ["None", "Poor", "Conversational", "Excellent"], :to_s, :to_s, {}, class: "form-input" %>
+            <%= member_form.label "Translator needed: ", class: "form-label" %>
+            <%= member_form.radio_button :english_level, true %> Yes
+            <%= member_form.radio_button :english_level, false %> No
           </div>
 
           <div class="column col-4">

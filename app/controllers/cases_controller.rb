@@ -48,7 +48,6 @@ class CasesController < ApplicationController
 
 		if @case.update_attributes(case_params)
 			@case.case_caseworkers.select {|ccw| ccw.caseworker_id.nil? }.map(&:destroy)
-			@case.create_activity(key: 'case.updated', owner: current_caseworker, case_activity_type: "Case updated")
 			flash[:success] = "Case updated"
 			redirect_to case_path(@case)
 		else
