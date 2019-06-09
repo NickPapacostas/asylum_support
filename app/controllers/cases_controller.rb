@@ -21,7 +21,7 @@ class CasesController < ApplicationController
 	def index
 	  respond_to do |format|
 	    format.html
-	    format.json { render json: CaseDatatable.new(params, view_context: view_context) }
+	    format.json { render json: CaseDatatable.new(params, view_context: view_context, lawyer: params[:lawyer]) }
 	  end
 	end
 
@@ -80,6 +80,6 @@ class CasesController < ApplicationController
 	end
 
 	def case_params
-		params.require(:case).permit(:description, :active, :caseworker_id, case_caseworkers_attributes: [:caseworker_id], members_attributes: Member.strong_params, files: [])
+		params.require(:case).permit(:lawyer, :description, :active, :caseworker_id, case_caseworkers_attributes: [:caseworker_id], members_attributes: Member.strong_params, files: [])
 	end
 end

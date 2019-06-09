@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/activity', to: 'activities#index'
   get '/activity_table', to: 'activities#activity_table'
 
+  get '/lawyer_dashboard', to: 'dashboards#lawyer'
+
   resources :cases do
     post 'find', to: 'cases#find', on: :collection
     get 'activities', to: "cases#all_activity", on: :collection

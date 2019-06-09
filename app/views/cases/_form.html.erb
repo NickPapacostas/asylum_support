@@ -6,9 +6,14 @@
 		<div class="form-group">
 			<label class="">
 				Case active: <%= f.check_box(:active) %>
+				<div class="divider"></div>
+        <%= f.label "Handled by lawyer (Theo)", class: "theo form-label" %>
+        <%= f.radio_button :lawyer, true %> Yes
+        <%= f.radio_button :lawyer, false %> No
 			</label>
 		</div>
-		<hr>
+		<%= f.submit "Save Case", {class: 'btn btn-primary upper-case-save'} %>
+		<hr class="upper-case-form-divider">
 
 		<div class="container">
 			<div class="columns">
@@ -46,7 +51,6 @@
 				</div>
 			</div>
 		</div>
-
 
 
 		<div class="divider big-divider"></div>

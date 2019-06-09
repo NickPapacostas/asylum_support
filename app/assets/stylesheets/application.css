@@ -182,3 +182,15 @@ h1, h2, h3 {
 .add-caseworker {
 	margin-top: 30px;
 }
+
+.theo {
+	text-transform: capitalize;
+}
+
+.upper-case-save {
+	margin-top: 20px;
+}
+
+.upper-case-form-divider {
+	margin-top: 10px !important;
+}
