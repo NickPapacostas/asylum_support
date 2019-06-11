@@ -14,8 +14,10 @@ class Member < ApplicationRecord
 			"Samos",
 			"Chios",
 			"Kos",
-			"Leros"
-		]
+			"Leros",
+			"Rhodes",
+			"Larissa"
+		].sort
 	end
 
 	def self.strong_params

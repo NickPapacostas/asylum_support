@@ -40,8 +40,14 @@ class CaseActivity
 			"Contact with Psychologist",
 			"Contact with Other",
 			"Other",
-			"Information/Advice Given"
-
-		]
-	end
+			"Information/Advice Given",
+      "Registration at GAS",
+      "Contact NGO",
+      "Contact with visitor",
+      "Appointment with Appeals Authority",
+      "Reminder",
+      "Protection Letter",
+      "No Action Taken"
+    ]
+  end
 end
