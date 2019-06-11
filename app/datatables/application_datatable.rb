@@ -1,7 +1,7 @@
 class ApplicationDatatable < AjaxDatatablesRails::ActiveRecord
-	extend Forwardable
+  extend Forwardable
 
-	def initialize(params, opts = {})
+  def initialize(params, opts = {})
     @view = opts[:view_context]
     super
   end

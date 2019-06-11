@@ -24,5 +24,4 @@ ActiveAdmin.register Caseworker do
     end
     f.actions
   end
-
 end

@@ -2,7 +2,6 @@ class CaseDatatable < ApplicationDatatable
   def_delegator :@view, :link_to
   def_delegator :@view, :case_path
 
-
   def view_columns
     @view_columns ||= {
       number: { source: "Case.id", searchable: true, orderable: true },
@@ -10,11 +9,10 @@ class CaseDatatable < ApplicationDatatable
       member_dob: { source: "Member.date_of_birth", orderable: true },
       member_nationality: { source: "Member.nationality", orderable: true },
       member_case_number: { source: "Member.case_number", cond: :like, searchable: true, orderable: true },
-      caseworker:  { source: "Caseworker.first_name",  cond: :like, searchable: true, orderable: true },
-      last_updated:  { source: "Case.updated_at"}
+      caseworker: { source: "Caseworker.first_name", cond: :like, searchable: true, orderable: true },
+      last_updated: { source: "Case.updated_at" }
     }
   end
-
 
   def data
     records.map do |record|
@@ -42,7 +40,6 @@ class CaseDatatable < ApplicationDatatable
   def get_raw_records
     lawyer_only = options[:lawyer] == "true"
     model = lawyer_only ? Case.where(lawyer: true) : Case.all
-    model.includes(:members, :caseworker).references(:members) #.includes(:point_of_contact)
+    model.includes(:members, :caseworker).references(:members) # .includes(:point_of_contact)
   end
-
 end

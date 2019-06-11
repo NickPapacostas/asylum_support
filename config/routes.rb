@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :caseworkers do
-  	get 'dashboard', to: 'dashboards#show'
+    get 'dashboard', to: 'dashboards#show'
   end
-
 
   resources :members
 
@@ -21,13 +20,11 @@ Rails.application.routes.draw do
     post 'activities', to: 'cases#create_activity'
   end
 
-
   delete '/case_caseworkers/:id', to: "case_caseworkers#destroy"
 
   devise_scope :caseworker do
-	  # add after sign in path
-	  #  https://stackoverflow.com/questions/19855866/how-to-set-devise-sign-in-page-as-root-page-in-rails
-	  root :to => 'devise/sessions#new'
-	end
-
+    # add after sign in path
+    #  https://stackoverflow.com/questions/19855866/how-to-set-devise-sign-in-page-as-root-page-in-rails
+    root :to => 'devise/sessions#new'
+  end
 end
