@@ -48,6 +48,6 @@ class CaseActivity
       "Reminder",
       "Protection Letter",
       "No Action Taken"
-    ]
+    ].sort
   end
 end
