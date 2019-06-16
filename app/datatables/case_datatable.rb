@@ -39,7 +39,15 @@ class CaseDatatable < ApplicationDatatable
 
   def get_raw_records
     lawyer_only = options[:lawyer] == "true"
+
+
     model = lawyer_only ? Case.where(lawyer: true) : Case.all
+
+    if options[:active]
+      active = options[:active] == "true"
+      model = active ? model.where(active: true) : model.where(active: false)
+    end
+
     model.includes(:members, :caseworker).references(:members) # .includes(:point_of_contact)
   end
 end

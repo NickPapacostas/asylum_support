@@ -1,5 +1,10 @@
 ready = ->
   console.log("running!")
+  if (window.location.pathname != null) && (window.location.pathname.match("dashboard"))
+    display_length = 10
+  else
+    display_length = 100
+
   $('#cases-datatable').dataTable
     columnDefs: [
       {className: "text-center", "targets": "_all"}
@@ -8,7 +13,7 @@ ready = ->
     bInfo:false
     serverSide: true
     order: [[1, "asc"]]
-    iDisplayLength: 100
+    iDisplayLength: display_length
     ajax: $('#cases-datatable').data('source')
     columns: [
       {data: 'number'}

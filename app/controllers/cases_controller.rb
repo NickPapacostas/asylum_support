@@ -21,7 +21,7 @@ class CasesController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.json { render json: CaseDatatable.new(params, view_context: view_context, lawyer: params[:lawyer]) }
+      format.json { render json: CaseDatatable.new(params, view_context: view_context, lawyer: params[:lawyer], active: params[:active]) }
     end
   end
 

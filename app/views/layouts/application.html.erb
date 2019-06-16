@@ -57,7 +57,10 @@
                   <%= nav_link "Dashboard", caseworker_dashboard_path(current_caseworker) %>
               </li>
               <li class="nav-item">
-                <%= nav_link "Cases", cases_path %>
+                <%= nav_link "Active Cases", cases_path(active: true) %>
+              </li>
+              <li class="nav-item">
+                <%= nav_link "Inactive Cases", cases_path(active: false) %>
               </li>
               <li class="nav-item">
                 <%= nav_link "Activity", activity_path %>
