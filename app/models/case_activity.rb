@@ -3,6 +3,10 @@ class CaseActivity
     PublicActivity::Activity.where(trackable_type: 'Case')
   end
 
+  def self.find_case(activity:)
+    Case.find(activity.trackable_id)
+  end
+
   def self.types
     [
       "Accompaniment to NGO",

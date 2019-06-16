@@ -1,0 +1,22 @@
+<%= form_for(activity, url: "/activities/#{activity.id}", method: "PATCH") do |f| %>
+	<div class='form-group activity-grid-container'>
+		<div class="activity-grid-item">
+			<%= f.label "Type", class: 'form-label' %>
+			<%= f.collection_select(:case_activity_type, CaseActivity.types, :to_s, :to_s, {},  {class: 'activity-input form-input case-activity-select'}) %>
+		</div>
+
+
+		<div class="activity-grid-item">
+			<%= f.label "Relevant future date", class: 'form-label' %>
+			<%= f.text_field(:relevant_future_datetime, {class: 'activity-input form-input case-activity-select', type: "date"}) %>
+		</div>
+
+
+		<div class="activity-grid-item">
+			<%= f.label "Notes", class: 'form-label' %>
+			<%= f.text_area :notes, class: 'activity-input form-input activity-notes' %>
+		</div>
+
+	</div>
+	<%= f.submit submit_text, class: 'btn btn-primary activity-save' %>
+<% end %>

@@ -21,8 +21,23 @@ initMemberModal = ->
 		console.log('modal id', modal_id)
 		$(modal_id).addClass('active'))
 
+initEditActivity = ->
+  $('.modal .edit-activity-close').on('click', ->
+    $('.modal').removeClass('active'))
+
+  $('.close-modal').on('click', ->
+    $('.modal').removeClass('active'))
+
+  $('.open-edit-activity-modal').on('click', (event) ->
+    console.log('opening', $(event.target).data('activity-id'))
+    modal_id = ".edit-activity-modal-" + $(event.target).data('activity-id')
+    console.log('modal id', modal_id)
+    $(modal_id).removeClass('d-hide')
+    $(modal_id).addClass('active'))
+
 $ ->
-	initMemberModal()
+  initMemberModal()
+  initEditActivity()
 
 $(document).on "fields_added.nested_form_fields", (event, param) ->
   initMemberModal()

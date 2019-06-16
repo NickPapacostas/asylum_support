@@ -9,8 +9,12 @@ Rails.application.routes.draw do
 
   resources :members
 
+
   get '/activity', to: 'activities#index'
   get '/activity_table', to: 'activities#activity_table'
+
+  resources :activities
+
 
   get '/lawyer_dashboard', to: 'dashboards#lawyer'
 
