@@ -19,4 +19,7 @@
 
 	</div>
 	<%= f.submit submit_text, class: 'btn btn-primary activity-save' %>
+	<% if activity.id %>
+		<button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+	<% end %>
 <% end %>
