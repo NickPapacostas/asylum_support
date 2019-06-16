@@ -1,3 +1,4 @@
 <div class="new-activity-form text-center">
-	<%= render partial: 'activities/form', locals: {activity: @case.activities.build, submit_text: "Create activity"} %>
+  <% activity = @case.activities.build %>
+	<%= render partial: 'activities/form', locals: {activity: activity, submit_text: "Create activity", url: case_activities_path(@case), http_method: "POST"} %>
 </div>

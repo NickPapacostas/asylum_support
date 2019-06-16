@@ -11,7 +11,7 @@
         <div class="container">
           <div class="columns">
             <div id="activity-modal-form">
-              <%= render partial: 'activities/form', locals: {activity: a, submit_text: "Update activity"} %>
+              <%= render partial: 'activities/form', locals: {activity: a, submit_text: "Update activity", url: "/activities/#{a.id}", http_method: "PATCH"} %>
             </div>
           </div>
         </div>
