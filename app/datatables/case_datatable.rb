@@ -31,7 +31,7 @@ class CaseDatatable < ApplicationDatatable
         member_dob: member_dob,
         member_nationality: member_nationality,
         member_case_number: member_case_number,
-        caseworker: record.caseworker.full_name,
+        caseworker: record.caseworker.try(:full_name),
         last_updated: record.updated_at.localtime.strftime("%A %B %d %H:%M"),
       }
     end
