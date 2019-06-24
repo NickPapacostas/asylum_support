@@ -51,10 +51,10 @@ class CaseActivity
       "Appointment with Appeals Authority",
       "Reminder",
       "Protection Letter",
-      "No Action Taken"
+      "No Action Taken",
       "Housing Found",
       "Cash Card Accepted",
-      "Registration for AMKA ",
+      "Registration for AMKA",
       "Registration for ΑΦΜ",
       "Lawyer Found"
 

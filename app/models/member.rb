@@ -141,6 +141,32 @@ class Member < ApplicationRecord
      "Albania"]
   end
 
+  def self.relation_options
+    [
+      "Mother/Wife",
+      "Single Mother",
+      "Wife",
+      "Unmarried Partner",
+      "Father/Husband",
+      "Husband",
+      "Single Father",
+      "Daughter",
+      "Son",
+      "Brother ",
+      "Sister",
+      "Single Person",
+      "Unaccompanied Minor",
+      "Cousin",
+      "Grandmother",
+      "Grandfather",
+      "Granddaughter ",
+      "Grandson",
+      "Uncles",
+      "Aunt",
+      "Niece"
+    ]
+  end
+
   def country_of_origin
     nationality
   end
