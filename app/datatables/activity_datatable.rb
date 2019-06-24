@@ -1,7 +1,7 @@
 class ActivityDatatable < ApplicationDatatable
   def view_columns
     @view_columns ||= {
-      updated_at: { source: "PublicActivity::Activity.updated_at", cond: :like, searchable: true, orderable: true },
+      created_at: { source: "PublicActivity::Activity.created_at", cond: :like, searchable: true, orderable: true },
       case_number: { source: "PublicActivity::Activity.trackable_id", searchable: true },
       activity_type: { source: "PublicActivity::Activity.case_activity_type", cond: :like, searchable: true, orderable: true },
       notes: { source: "PublicActivity::Activity.notes", cond: :like, searchable: true, orderable: true },
@@ -14,7 +14,7 @@ class ActivityDatatable < ApplicationDatatable
     records.map do |record|
       # case_number_link = link_to(record.trackable_id, case_path(record.trackable_id))
       {
-        updated_at: record.updated_at.strftime("%d/%m/%Y"),
+        created_at: record.created_at.strftime("%d/%m/%Y"),
         case_number: link_to(record.trackable_id, case_path(record.trackable_id)),
         activity_type: record.case_activity_type,
         notes: record.notes

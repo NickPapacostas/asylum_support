@@ -9,7 +9,7 @@ ready = ->
     pagingType: 'full_numbers'
     columns: [
       {data: 'case_number'}
-      {data: 'updated_at'}
+      {data: 'created_at'}
       {data: 'activity_type'}
       {data: 'notes'}
     ]
