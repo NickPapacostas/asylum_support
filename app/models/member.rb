@@ -93,7 +93,9 @@ class Member < ApplicationRecord
   end
 
   def self.nationalities
-    ["Syria",
+    [
+      "Tanzania",
+      "Syria",
      "Bangladesh",
      "Pakistan",
      "India",
