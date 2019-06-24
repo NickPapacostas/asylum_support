@@ -79,7 +79,7 @@
 
 	    		<div>
 	    			<%= member_form.label "Nationality", class: "form-label" %>
-        		<%= member_form.collection_select :nationality, Member.nationalities, :to_s, :to_s, {}, {class: "form-input"} %>
+        		<%= member_form.collection_select :nationality, Member.nationalities, :to_s, :to_s, {include_blank: true}, {class: "form-input"} %>
 	  		  </div>
 					<div class="member-actions">
 						<%= f.submit "Save", {class: 'btn btn-primary'} %>
