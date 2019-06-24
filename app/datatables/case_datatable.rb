@@ -16,7 +16,7 @@ class CaseDatatable < ApplicationDatatable
 
   def data
     records.map do |record|
-      if member = record.members.first
+      if member = record.lead_member
         member_name = member.full_name
         member_dob = member.display_birthdate
         member_nationality = member.nationality

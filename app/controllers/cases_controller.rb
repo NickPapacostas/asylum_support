@@ -27,7 +27,7 @@ class CasesController < ApplicationController
 
   def show
     @case = Case.find(params[:id])
-    @activities = @case.activities.where(key: "case.activity_created").reverse.take(10)
+    set_activities
   end
 
   def create
@@ -39,19 +39,20 @@ class CasesController < ApplicationController
       flash[:success] = "Case created"
       redirect_to case_path(@case)
     else
-      flash[:error] = "Case not created"
+      flash[:error] = "Case not created:  #{@case.errors.full_messages}"
     end
   end
 
   def update
     @case = Case.find(params[:id])
+    set_activities
 
     if @case.update_attributes(case_params)
       @case.case_caseworkers.select { |ccw| ccw.caseworker_id.nil? }.map(&:destroy)
       flash[:success] = "Case updated"
       redirect_to case_path(@case)
     else
-      flash[:error] = "Case not updated"
+      flash[:error] = "Case not updated: #{@case.errors.full_messages}"
       render :edit
     end
   end
@@ -73,6 +74,10 @@ class CasesController < ApplicationController
   end
 
   private
+
+  def set_activities
+    @activities = @case.activities.where(key: "case.activity_created").reverse.take(10)
+  end
 
   def activity_params
     params.require(:public_activity_activity).permit(:case_activity_type, :notes, :relevant_future_datetime)

@@ -47,6 +47,7 @@ class Member < ApplicationRecord
       :afm,
       :bank_account,
       :relation,
+      :lead_case_member,
       legal_status: [],
       vulnerabilities: [],
       housing: []

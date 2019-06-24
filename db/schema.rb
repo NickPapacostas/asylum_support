@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_09_160712) do
+ActiveRecord::Schema.define(version: 2019_06_24_221822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2019_06_09_160712) do
     t.boolean "bank_account"
     t.boolean "geographic_restriction"
     t.string "relation"
+    t.boolean "lead_case_member", default: false
     t.index ["case_id"], name: "index_members_on_case_id"
   end
 

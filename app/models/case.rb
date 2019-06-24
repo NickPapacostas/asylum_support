@@ -13,10 +13,14 @@ class Case < ApplicationRecord
 
   has_many_attached :files
 
-  # has_many :linked_cases, foreign_key: :first_id
+  # validate :has_one_lead_member
 
   def member_name
-    members.try(:first).try(:full_name)
+    lead_member.try(:full_name)
+  end
+
+  def lead_member
+    members.find_by(lead_case_member: true) || members.try(:first)
   end
 
   def member_nationality
@@ -30,4 +34,10 @@ class Case < ApplicationRecord
       Caseworker.all
     end
   end
+
+  # def has_one_lead_member
+  #   if members.where(lead_case_member: true).count > 1
+  #     errors.add(:lead_case_member, "can't have more than one lead case member")
+  #   end
+  # end
 end

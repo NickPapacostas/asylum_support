@@ -87,6 +87,12 @@
             <%= member_form.collection_select :relation, Member.relation_options, :to_s, :to_s, {}, class: "form-input" %>
           </div>
 
+          <div>
+            <%= member_form.label "Lead case member", class: "form-label" %>
+            <%= member_form.radio_button :lead_case_member, false %> No
+            <%= member_form.radio_button :lead_case_member, true %> Yes
+          </div>
+
 					<div class="member-actions">
 						<%= f.submit "Save", {class: 'btn btn-primary'} %>
 						<%= link_to "Edit", "#/", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal"} %>
