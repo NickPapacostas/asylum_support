@@ -69,11 +69,6 @@
           </div>
 
           <div class="column col-4">
-            <%= member_form.label "Familial Relationship", class: "form-label" %>
-            <%= member_form.collection_select :relation, Member.relation_options, :to_s, :to_s, {}, class: "form-input" %>
-          </div>
-
-          <div class="column col-4">
             <%= member_form.label "Geographic restriction:", class: "form-label" %>
             <%= member_form.radio_button :geographic_restriction, true %> Yes
             <%= member_form.radio_button :geographic_restriction, false %> No

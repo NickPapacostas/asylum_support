@@ -164,7 +164,7 @@ class Member < ApplicationRecord
       "Uncles",
       "Aunt",
       "Niece"
-    ]
+    ].sort
   end
 
   def country_of_origin

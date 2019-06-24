@@ -81,11 +81,18 @@
 	    			<%= member_form.label "Nationality", class: "form-label" %>
         		<%= member_form.collection_select :nationality, Member.nationalities, :to_s, :to_s, {include_blank: true}, {class: "form-input"} %>
 	  		  </div>
+
+          <div>
+            <%= member_form.label "Familial Relationship", class: "form-label" %>
+            <%= member_form.collection_select :relation, Member.relation_options, :to_s, :to_s, {}, class: "form-input" %>
+          </div>
+
 					<div class="member-actions">
 						<%= f.submit "Save", {class: 'btn btn-primary'} %>
 						<%= link_to "Edit", "#/", {class: "btn btn-secondary open-member-modal ",  "data-toggle" => "modal"} %>
 						<%= member_form.remove_nested_fields_link 'Remove', class: "btn btn-cancel" %>
 					</div>
+
 					<%= render partial: 'member_modal', locals: {member_form: member_form, case_persisted: !the_case.id.nil? } %>
 				</div>
 			<% end %>
