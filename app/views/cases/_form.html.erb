@@ -88,7 +88,7 @@
           </div>
 
           <div>
-            <%= member_form.label "Lead case member", class: "form-label" %>
+            <%= member_form.label "Lead case member", {class: "form-label tooltip tooltip-left", "data-tooltip" => 'Used for display / searching'} %>
             <%= member_form.radio_button :lead_case_member, false %> No
             <%= member_form.radio_button :lead_case_member, true %> Yes
           </div>
