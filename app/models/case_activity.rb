@@ -52,6 +52,12 @@ class CaseActivity
       "Reminder",
       "Protection Letter",
       "No Action Taken"
+      "Housing Found",
+      "Cash Card Accepted",
+      "Registration for AMKA ",
+      "Registration for ΑΦΜ",
+      "Lawyer Found"
+
     ].sort
   end
 end
