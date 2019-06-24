@@ -35,8 +35,8 @@
     <div class="divider-vert"></div>
 
     <div class="column col-lg-4">
-    	<h3>Recent Activity</h3>
-      <% if @activities.empty? %>
+    	<h3>Upcoming Activity</h3>
+      <% if @upcoming_activities.empty? %>
         No Activity yet...
       <% else %>
       <table class="table">
@@ -50,7 +50,7 @@
           </tr>
         </head>
         <tbody>
-          <% @activities.each do |a| %>
+          <% @upcoming_activities.each do |a| %>
             <tr>
               <td><%= link_to(a.trackable_id, case_path(a.trackable_id)) %></td>
               <td><%= a.updated_at.to_date %></td>

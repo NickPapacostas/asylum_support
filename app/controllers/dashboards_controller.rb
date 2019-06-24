@@ -3,7 +3,11 @@ class DashboardsController < ApplicationController
 
   def show
     @caseworker = current_caseworker
-    @activities = PublicActivity::Activity.where(owner_id: @caseworker.id).order(updated_at: :desc).limit(10)
+    @upcoming_activities = PublicActivity::Activity
+                    .where(owner_id: @caseworker.id)
+                    .where.not(relevant_future_datetime: nil)
+                    .order(updated_at: :desc)
+                    .limit(10)
   end
 
   def lawyer
