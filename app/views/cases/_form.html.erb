@@ -162,7 +162,7 @@
     						<tr>
     							<th scope="col">Type</th>
     							<th scope="col">Future date</th>
-    							<th scope="col">Date created</th>
+    							<th scope="col">Date updated</th>
     							<th scope="col">Caseworker</th>
     							<th scope="col">Notes</th>
     							<th scope="col">Actions</th>
@@ -173,7 +173,7 @@
 	    						<tr>
 	    							<td><%= a.case_activity_type %></td>
 	    							<td><%= display_datetime(a.relevant_future_datetime) %></td>
-	    							<td><%= display_datetime(a.created_at) %></td>
+	    							<td><%= display_datetime(a.updated_at) %></td>
 	    							<td><%= a.owner.try(:full_name) %></td>
 	    							<td><%= a.notes %></td>
 	    							<td><%= link_to("Edit", "#/", {data: {toggle: "modal", activity_id: a.id}, class: 'open-edit-activity-modal'}) %></td>
