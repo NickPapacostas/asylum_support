@@ -163,7 +163,8 @@ class Member < ApplicationRecord
       "Grandson",
       "Uncles",
       "Aunt",
-      "Niece"
+      "Niece",
+      "Nephew"
     ].sort
   end
 
