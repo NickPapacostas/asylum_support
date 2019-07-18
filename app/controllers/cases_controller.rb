@@ -76,7 +76,7 @@ class CasesController < ApplicationController
   private
 
   def set_activities
-    @activities = @case.activities.where(key: "case.activity_created").reverse.take(10)
+    @activities = @case.activities.where(key: "case.activity_created").order(created_at: :desc)
   end
 
   def activity_params
