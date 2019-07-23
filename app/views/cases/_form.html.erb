@@ -184,7 +184,7 @@
 	    							<td><%= a.notes %></td>
 	    							<td>
                       <%= link_to("Edit", "#/", {data: {toggle: "modal", activity_id: a.id}, class: 'open-edit-activity-modal'}) %>
-                      <%= link_to 'Destroy',  "/activities/#{a.id}",  method: :delete, data: { confirm: 'Delete activity?' } %>
+                      <%= link_to 'Delete',  "/activities/#{a.id}",  method: :delete, data: { confirm: 'Delete activity?' } %>
                     </td>
 	    						</tr>
     						<% end %>
