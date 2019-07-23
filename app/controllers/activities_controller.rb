@@ -17,6 +17,13 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def destroy
+    @activity = PublicActivity::Activity.find(params[:id])
+    @activity.destroy
+
+    redirect_to case_path(@activity.trackable_id)
+  end
+
   private
 
   def activity_params
