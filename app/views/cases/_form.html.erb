@@ -189,7 +189,7 @@
 	    							<td><%= display_datetime(a.relevant_future_datetime) %></td>
 	    							<td><%= display_datetime(a.updated_at) %></td>
 	    							<td><%= a.owner.try(:full_name) %></td>
-	    							<td><%= a.notes.html_safe %></td>
+	    							<td><%= simple_format(a.notes) %></td>
 	    							<td>
                       <%= link_to("Edit", "#/", {data: {toggle: "modal", activity_id: a.id}, class: 'open-edit-activity-modal'}) %>
                       <%= link_to 'Delete',  "/activities/#{a.id}",  method: :delete, data: { confirm: 'Delete activity?' } %>
