@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_221822) do
+ActiveRecord::Schema.define(version: 2019_10_19_123414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2019_06_24_221822) do
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
     t.boolean "lawyer", default: false
+    t.string "google_drive_link"
     t.index ["caseworker_id"], name: "index_cases_on_caseworker_id"
   end
 

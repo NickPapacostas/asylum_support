@@ -84,6 +84,15 @@ class CasesController < ApplicationController
   end
 
   def case_params
-    params.require(:case).permit(:lawyer, :description, :active, :caseworker_id, case_caseworkers_attributes: [:caseworker_id], members_attributes: Member.strong_params, files: [])
+    params.require(:case)
+      .permit(
+        :lawyer,
+        :google_drive_link,
+        :description,
+        :active,
+        :caseworker_id,
+        case_caseworkers_attributes: [:caseworker_id],
+        members_attributes: Member.strong_params, files: []
+      )
   end
 end

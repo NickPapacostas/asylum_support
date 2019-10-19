@@ -4,14 +4,23 @@
 	<%= simple_form_for(the_case) do |f| %>
 
 		<div class="form-group">
-			<label class="">
-				Case active: <%= f.check_box(:active) %>
-				<div class="divider"></div>
-        <%= f.label "Handled by lawyer (Theo)", class: "theo form-label" %>
-        <%= f.radio_button :lawyer, true %> Yes
-        <%= f.radio_button :lawyer, false %> No
-			</label>
+			Case active: <%= f.check_box(:active) %>
+			<div class="divider"></div>
+      <%= f.label "Handled by lawyer (Theo)", class: "theo form-label" %>
+      <%= f.radio_button :lawyer, true %> Yes
+      <%= f.radio_button :lawyer, false %> No
+      <div class="divider"></div>
+
+      <% if drive_link = the_case.google_drive_link %>
+        <%= link_to("Google Drive folder", drive_link, target: :_blank) %>
+        <button id="google-drive-edit" class="btn btn-secondary">Edit</button>
+      <% end %>
+
+      <div id="edit-drive-link" class="<%= the_case.google_drive_link ? "d-hide" : nil %>">
+        <%= f.text_field :google_drive_link, placeholder: "Google drive folder" %>
+      </div>
 		</div>
+
 		<%= f.submit "Save Case", {class: 'btn btn-primary upper-case-save'} %>
 		<hr class="upper-case-form-divider">
 
@@ -107,10 +116,9 @@
 
 		<div class="divider big-divider"></div>
 
-
-  	<div>
-	  	<h2>Files</h2>
-  	</div>
+    <div>
+      <h2>Files</h2>
+    </div>
 
   	<div class="container">
   		<div class="columns">
@@ -181,7 +189,7 @@
 	    							<td><%= display_datetime(a.relevant_future_datetime) %></td>
 	    							<td><%= display_datetime(a.updated_at) %></td>
 	    							<td><%= a.owner.try(:full_name) %></td>
-	    							<td><%= a.notes %></td>
+	    							<td><%= a.notes.html_safe %></td>
 	    							<td>
                       <%= link_to("Edit", "#/", {data: {toggle: "modal", activity_id: a.id}, class: 'open-edit-activity-modal'}) %>
                       <%= link_to 'Delete',  "/activities/#{a.id}",  method: :delete, data: { confirm: 'Delete activity?' } %>

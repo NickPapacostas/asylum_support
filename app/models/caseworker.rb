@@ -7,7 +7,7 @@ class Caseworker < ApplicationRecord
   has_many :primary_cases, class_name: :Case, foreign_key: :caseworker_id
   # has_many :linked_cases, through: :primary_cases
 
-  has_many :case_caseworkers
+  has_many :case_caseworkers, dependent: :destroy
   has_many :secondary_cases, through: :case_caseworkers, source: :case
 
   def cases

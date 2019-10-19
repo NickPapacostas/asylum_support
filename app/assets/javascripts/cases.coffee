@@ -12,7 +12,7 @@ ready = ->
     processing: true
     bInfo:false
     serverSide: true
-    order: [[1, "asc"]]
+    order: [[0, "desc"]]
     iDisplayLength: display_length
     ajax: $('#cases-datatable').data('source')
     columns: [

@@ -14,4 +14,10 @@ $(document).ready(function() {
 		}
 		$.ajax(params)
 	})
+
+	$('#google-drive-edit').click(function(event) {
+		event.preventDefault();
+
+		$('#edit-drive-link').removeClass("d-hide");
+	})
 })

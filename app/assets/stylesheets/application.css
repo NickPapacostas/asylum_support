@@ -113,7 +113,7 @@ h1, h2, h3 {
 
 #case_description {
 	width: 90%;
-	min-height: 200px;
+	min-height: 400px;
 }
 
 .btn-cancel:hover {
@@ -129,6 +129,11 @@ h1, h2, h3 {
 	padding: 1em;
     height: 5%;
     overflow: hidden;
+}
+
+#google-drive-edit {
+  height: 80%;
+  line-height: .8em;
 }
 
 .modal-container {
