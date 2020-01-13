@@ -107,6 +107,7 @@ class Member < ApplicationRecord
       "Myanmar",
       "Balochistan",
       "Afghanistan",
+      "Gabon",
       "Kurdistan (Iraq)",
       "Kurdistan (Iran)",
       "Kurdistan (Syria)",
