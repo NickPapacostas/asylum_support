@@ -15,7 +15,7 @@ class Caseworker < ApplicationRecord
   end
 
   def all_cases
-    primary_cases + secondary_cases # + linked_cases.map(&:second)
+    primary_cases.where(active: true) + secondary_cases.where(active: true) # + linked_cases.map(&:second)
   end
 
   def full_name
