@@ -1,0 +1,32 @@
+<h2>Cases with Unaccompanied Minors</h2>
+<div>These cases have only members who are minors, or are specifically marked as unacommpanied</div>
+
+<table class="table">
+  <head>
+    <tr>
+      <th>Case number</th>
+      <th>Name</th>
+      <th>DOB</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Caseworker Name</th>
+      <th>Last Updated</th>
+    </tr>
+  </head>
+  <tbody>
+    <% @cases.each do |c| %>
+      <% first_minor = c.members.find(&:is_minor?) || c.members.where("'Unaccompanied minor' = any(vulnerabilities)") %>
+      <% if first_minor %>
+        <tr>
+          <td><%= link_to(c.id, case_path(c)) %></td>
+          <td><%= first_minor.full_name %></td>
+          <td><%= display_datetime(first_minor.date_of_birth) %></td>
+          <td><%= first_minor.phone_number %></td>
+          <td><%= first_minor.email %></td>
+          <td><%= c.caseworker.full_name %></td>
+          <td><%= display_datetime(c.updated_at) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

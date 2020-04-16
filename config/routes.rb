@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :members
+  get '/unaccompanied_minors', to: 'members#unaccompanied_minors'
 
 
   get '/activity', to: 'activities#index'

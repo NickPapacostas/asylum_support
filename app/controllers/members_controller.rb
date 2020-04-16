@@ -16,6 +16,14 @@ class MembersController < ApplicationController
     @members = Member.all
   end
 
+  def unaccompanied_minors
+    cases_with_minors = Case.joins(:members).where('members.date_of_birth > ?', 18.years.ago)
+    cases_with_minors_and_no_adults = cases_with_minors.reject { |c| c.members.any?(&:is_adult?) }
+    cases_specifically_marked = Member.where("'Unaccompanied minor' = any(vulnerabilities)").map(&:case).uniq
+
+    @cases = (cases_with_minors_and_no_adults + cases_specifically_marked).uniq
+  end
+
   def update
     @member = Member.find(params[:id])
     if @member.update_attributes(member_params)

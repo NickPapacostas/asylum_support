@@ -193,6 +193,17 @@ class Member < ApplicationRecord
     date_of_birth.strftime("%d/%m/%Y")
   end
 
+  def is_minor?
+    return true if vulnerabilities.include?('Unaccompanied minor')
+    return false unless date_of_birth
+
+    date_of_birth > 18.years.ago
+  end
+
+  def is_adult?
+    !is_minor?
+  end
+
   before_validation :set_dates
 
   def set_dates
