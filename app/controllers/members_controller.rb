@@ -19,8 +19,11 @@ class MembersController < ApplicationController
   def unaccompanied_minors
     cases_with_minors = Case.joins(:members).where('members.date_of_birth > ?', 18.years.ago)
     cases_with_minors_and_no_adults = cases_with_minors.reject { |c| c.members.any?(&:is_adult?) }
+    cases = (cases_with_minors_and_no_adults + cases_specifically_marked).uniq
 
-    @cases = (cases_with_minors_and_no_adults + cases_specifically_marked).uniq
+
+
+    @cases = cases.sort_by { |c| c.members.first.date_of_birth }.reverse
   end
 
   def update
