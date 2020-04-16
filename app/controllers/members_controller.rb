@@ -19,7 +19,6 @@ class MembersController < ApplicationController
   def unaccompanied_minors
     cases_with_minors = Case.joins(:members).where('members.date_of_birth > ?', 18.years.ago)
     cases_with_minors_and_no_adults = cases_with_minors.reject { |c| c.members.any?(&:is_adult?) }
-    cases_specifically_marked = Member.where("'Unaccompanied minor' = any(vulnerabilities)").map(&:case).uniq
 
     @cases = (cases_with_minors_and_no_adults + cases_specifically_marked).uniq
   end
@@ -36,6 +35,11 @@ class MembersController < ApplicationController
   end
 
   private
+
+  def cases_specifically_marked
+    members = Member.where("'Unaccompanied minor' = any(vulnerabilities)")
+    Case.where(id: members.map(&:case_id))
+  end
 
   def member_params
     params.require(:member).permit(Member.strong_params)
