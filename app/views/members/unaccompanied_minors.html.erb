@@ -9,13 +9,15 @@
       <th>DOB</th>
       <th>Phone</th>
       <th>Email</th>
-      <th>Caseworker Name</th>
+      <th># of Minors</th>
+      <th>Caseworker</th>
       <th>Last Updated</th>
     </tr>
   </head>
   <tbody>
     <% @cases.each do |c| %>
       <% first_minor = c.members.find(&:is_minor?) || c.members.where("'Unaccompanied minor' = any(vulnerabilities)") %>
+      <% number_of_minors = c.members.select {|m| m.is_minor? || m.vulnerabilities.include?('Unaccompanied minor') }.count %>
       <% if first_minor %>
         <tr>
           <td><%= link_to(c.id, case_path(c)) %></td>
@@ -23,6 +25,7 @@
           <td><%= display_datetime(first_minor.date_of_birth) %></td>
           <td><%= first_minor.phone_number %></td>
           <td><%= first_minor.email %></td>
+          <td><%= number_of_minors %></td>
           <td><%= c.caseworker.full_name %></td>
           <td><%= display_datetime(c.updated_at) %></td>
         </tr>
