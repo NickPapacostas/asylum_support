@@ -9,7 +9,6 @@
       <th>DOB</th>
       <th>Phone</th>
       <th>Email</th>
-      <th># of Minors</th>
       <th>Caseworker</th>
       <th>Last Updated</th>
     </tr>
@@ -25,7 +24,6 @@
           <td><%= display_datetime(first_minor.date_of_birth) %></td>
           <td><%= first_minor.phone_number %></td>
           <td><%= first_minor.email %></td>
-          <td><%= number_of_minors %></td>
           <td><%= c.caseworker.full_name %></td>
           <td><%= display_datetime(c.updated_at) %></td>
         </tr>
