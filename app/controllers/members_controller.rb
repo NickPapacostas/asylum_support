@@ -23,7 +23,7 @@ class MembersController < ApplicationController
 
 
 
-    @cases = cases.sort_by { |c| c.members.first.date_of_birth }.reverse
+    @cases = cases.sort.reverse
   end
 
   def update
