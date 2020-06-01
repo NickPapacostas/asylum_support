@@ -154,6 +154,7 @@ class Member < ApplicationRecord
 
   def self.relation_options
     [
+      "",
       "Mother/Wife",
       "Single Mother",
       "Wife",
