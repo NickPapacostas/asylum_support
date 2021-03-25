@@ -21,6 +21,9 @@ class Member < ApplicationRecord
   end
 
   def self.strong_params
+    non_array_fields.concat(array_fields)
+  end
+  def self.non_array_fields
     [
       :id,
       :case_id,
@@ -47,7 +50,12 @@ class Member < ApplicationRecord
       :afm,
       :bank_account,
       :relation,
-      :lead_case_member,
+      :lead_case_member
+    ]
+  end
+
+  def self.array_fields
+    [
       legal_status: [],
       vulnerabilities: [],
       housing: []

@@ -13,8 +13,24 @@ class MembersController < ApplicationController
   end
 
   def index
-    @members = Member.all
+    respond_to do |format|
+      format.html { @members = Member.all }
+      format.csv do
+        attributes = Member.non_array_fields.concat(Member.array_fields.flat_map { |kv| kv.keys })
+        csv = CSV.generate(headers: true) do |csv|
+          csv << attributes
+
+          Member.all.each do |user|
+            csv << attributes.map{ |attr| user.send(attr) }
+          end
+        end
+
+        send_data csv, filename: "members-#{Date.today}.csv"
+      end
+    end
+
   end
+
 
   def unaccompanied_minors
     cases_with_minors = Case.joins(:members).where('members.date_of_birth > ?', 18.years.ago)
