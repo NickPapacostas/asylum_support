@@ -5,7 +5,9 @@ class CaseDatatable < ApplicationDatatable
   def view_columns
     @view_columns ||= {
       number: { source: "Case.id", searchable: true, orderable: true },
-      member_name: { source: "Member.first_name", cond: :like, searchable: true, orderable: true },
+      first_name: { source: "Member.first_name", cond: :like, searchable: true, orderable: true },
+      last_name: { source: "Member.last_name", cond: :like, searchable: true, orderable: true },
+      phone_number: { source: "Member.phone_number", cond: :like, searchable: true, orderable: true },
       member_dob: { source: "Member.date_of_birth", orderable: true },
       member_nationality: { source: "Member.nationality", orderable: true },
       member_case_number: { source: "Member.case_number", cond: :like, searchable: true, orderable: true },
@@ -17,7 +19,9 @@ class CaseDatatable < ApplicationDatatable
   def data
     records.map do |record|
       if member = record.lead_member
-        member_name = member.full_name
+        first_name = member.first_name
+        last_name = member.last_name
+        phone_number = member.phone_number
         member_dob = member.display_birthdate
         member_nationality = member.nationality
         member_case_number = member.case_number
@@ -26,8 +30,9 @@ class CaseDatatable < ApplicationDatatable
       {
         # example:
         number: link_to(record.id, case_path(record.id)),
-        member_name: link_to(member_name, case_path(record.id)),
-        member_name: link_to(member_name, case_path(record.id)),
+        first_name: first_name ? link_to(first_name, case_path(record.id)) : nil,
+        last_name: last_name ? link_to(last_name, case_path(record.id)) : nil,
+        phone_number: phone_number ? link_to(phone_number, case_path(record.id)) : nil,
         member_dob: member_dob,
         member_nationality: member_nationality,
         member_case_number: member_case_number,

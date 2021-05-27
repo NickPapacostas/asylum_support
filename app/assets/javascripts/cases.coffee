@@ -17,7 +17,9 @@ ready = ->
     ajax: $('#cases-datatable').data('source')
     columns: [
       {data: 'number'}
-      {data: 'member_name'}
+      {data: 'first_name'}
+      {data: 'last_name'}
+      {data: 'phone_number'}
       {data: 'member_dob'}
       {data: 'member_nationality'}
       {data: 'member_case_number'}
