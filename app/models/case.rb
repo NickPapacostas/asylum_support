@@ -20,7 +20,7 @@ class Case < ApplicationRecord
   end
 
   def lead_member
-    members.find_by(lead_case_member: true) || members.try(:first)
+    members.find(&:lead_case_member) || members.try(:first)
   end
 
   def member_nationality
