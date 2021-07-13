@@ -1,4 +1,4 @@
-class CaseDatatable < ApplicationDatatable
+class CaseSearchDatatable < ApplicationDatatable
   def_delegator :@view, :link_to
   def_delegator :@view, :case_path
 
