@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     post 'find', to: 'cases#find', on: :collection
     get 'activities', to: "cases#all_activity", on: :collection
     post 'activities', to: 'cases#create_activity'
+    get '/search', to: 'cases#search', on: :collection
   end
 
   delete '/case_caseworkers/:id', to: "case_caseworkers#destroy"

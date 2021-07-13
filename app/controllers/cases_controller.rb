@@ -25,6 +25,14 @@ class CasesController < ApplicationController
     end
   end
 
+  def search
+    respond_to do |format|
+      format.html
+      format.json { render json: CaseSearchDatatable.new(params, view_context: view_context) }
+    end
+
+  end
+
   def show
     @case = Case.find(params[:id])
     set_activities
