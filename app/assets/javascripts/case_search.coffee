@@ -4,11 +4,11 @@ ready = ->
       {className: "text-center", "targets": "_all"}
     ],
     processing: true
-    bInfo:false
+    bInfo: true
     serverSide: true
     order: [[0, "desc"]]
     iDisplayLength: 100
-    ajax: $('#cases-datatable').data('source')
+    ajax: $('#cases-search-datatable').data('source')
     columns: [
       {data: 'number'}
       {data: 'first_name'}

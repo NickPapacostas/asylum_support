@@ -26,7 +26,7 @@ class CaseSearchDatatable < ApplicationDatatable
         first_name: first_name ? link_to(first_name, case_path(record.id)) : nil,
         last_name: last_name ? link_to(last_name, case_path(record.id)) : nil,
         caseworker: record.caseworker.try(:full_name),
-        description: record.description,
+        description: record.description.truncate(200),
         last_updated: record.updated_at.localtime.strftime("%A %B %d %H:%M")
       }
     end
