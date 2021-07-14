@@ -18,10 +18,6 @@ class CaseSearchDatatable < ApplicationDatatable
       if member = record.lead_member
         first_name = member.first_name
         last_name = member.last_name
-        phone_number = member.phone_number
-        member_dob = member.display_birthdate
-        member_nationality = member.nationality
-        member_case_number = member.case_number
       end
 
       {

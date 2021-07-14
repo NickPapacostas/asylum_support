@@ -14,8 +14,8 @@ ready = ->
       {data: 'first_name'}
       {data: 'last_name'}
       {data: 'caseworker'}
-      {data: 'description'}
       {data: 'last_updated'}
+      {data: 'description'}
     ]
 
 $(document).ready(ready)
