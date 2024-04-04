@@ -1,4 +1,9 @@
 class CaseActivity
+  def self.ransackable_attributes(auth_object = nil)
+    ["case_activity_type", "created_at", "id", "id_value", "key", "notes", "owner_id", "owner_type", "parameters", "recipient_id", "recipient_type", "relevant_future_datetime", "tags", "trackable_id", "trackable_type", "updated_at"]
+  end
+
+
   def self.all
     PublicActivity::Activity.where(trackable_type: 'Case')
   end

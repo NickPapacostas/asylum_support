@@ -21,4 +21,9 @@ class Caseworker < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["admin", "created_at", "email", "first_name", "id", "id_value", "last_name", "reset_password_sent_at", "updated_at"]
+  end
+
 end
