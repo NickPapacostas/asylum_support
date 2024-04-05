@@ -44,7 +44,7 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    if @member.update_attributes(member_params)
+    if @member.update(member_params)
       @member.create_activity(key: 'member.updated', owner: current_caseworker)
       flash[:success] = "Member updated"
     else

@@ -55,7 +55,7 @@ class CasesController < ApplicationController
     @case = Case.find(params[:id])
     set_activities
 
-    if @case.update_attributes(case_params)
+    if @case.update(case_params)
       @case.case_caseworkers.select { |ccw| ccw.caseworker_id.nil? }.map(&:destroy)
       flash[:success] = "Case updated"
       redirect_to case_path(@case)
