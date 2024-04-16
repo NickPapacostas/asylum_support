@@ -3,14 +3,6 @@
 <div class="case-form">
 	<%= simple_form_for(the_case) do |f| %>
 
-		<div class="form-group">
-			Case active: <%= f.check_box(:active) %>
-			<div class="divider"></div>
-      <%= f.label "Handled by lawyer (Theo)", class: "theo form-label" %>
-      <%= f.radio_button :lawyer, true %> Yes
-      <%= f.radio_button :lawyer, false %> No
-      <div class="divider"></div>
-
       <% if drive_link = the_case.google_drive_link %>
         <%= link_to("Google Drive folder", drive_link, target: :_blank) %>
         <button id="google-drive-edit" class="btn btn-secondary">Edit</button>
