@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get '/lawyer_dashboard', to: 'dashboards#lawyer'
 
+  get '/metrics', to: 'metrics#show'
+
   resources :cases do
     post 'find', to: 'cases#find', on: :collection
     get 'activities', to: "cases#all_activity", on: :collection
