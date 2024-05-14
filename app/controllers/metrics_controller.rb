@@ -24,10 +24,16 @@ class MetricsController < ApplicationController
     # for all members with the nationality, group them by month
     # for every month, count how the entries
     # returns a hash with nationality : hash (date, count of entries)
-    @nationalities = Member.all.group_by{|m| m.nationality}.map{ |nationality, list| [nationality == "" ? "No Country" : nationality, list.group_by_month{|x| x.created_at}]}.map{|nationality, list| [nationality, list.map{|date, m| [date, m.count]}.to_h]}.to_h
+    @nationalities = Member.all.group_by{|m| m.nationality}
+                           .map{ |nationality, list| [nationality == "" ? "No Country" : nationality, list.group_by_month{|x| x.created_at}]}
+                           .map{ |nationality, list| [nationality, list.map{|date, m| [date, m.count]}.to_h]}
+                           .to_h
 
     # works the same as @nationalities
-    @topics = Case.all.group_by{|c| mapDescription(c.description)}.map{ |topic, list| [topic, list.group_by_month{|x| x.created_at}]}.map{|topic, list| [topic, list.map{|date, m| [date, m.count]}.to_h]}.to_h
+    @topics = Case.all.group_by{|c| mapDescription(c.description)}
+                  .map{ |topic, list| [topic, list.group_by_month{|x| x.created_at}]}
+                  .map{ |topic, list| [topic, list.map{|date, m| [date, m.count]}.to_h]}
+                  .to_h
 
   end
 end
