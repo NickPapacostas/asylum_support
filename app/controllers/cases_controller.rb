@@ -85,7 +85,7 @@ class CasesController < ApplicationController
   def rename_file
 
     @case = Case.find(params[:id])
-    file = @case.files.find{params["file_id"]}
+    file = @case.files.find(params["file_id"])
     new_filename = params["new_filename"]
 
     filenames = @case.files.map{|f| f.filename}
