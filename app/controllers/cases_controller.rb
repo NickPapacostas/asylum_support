@@ -90,7 +90,7 @@ class CasesController < ApplicationController
 
     filenames = @case.files.map{|f| f.filename}
 
-    if not new_filename == file.filename and filenames.include?(new_filename)
+    if filenames.include?(new_filename)
       return redirect_to @case, alert: 'Filename already used'
     end
 
