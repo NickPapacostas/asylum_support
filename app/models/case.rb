@@ -39,6 +39,7 @@ class Case < ApplicationRecord
     file.blob.update!(filename: new_name)
   end
 
+  # overwriting the setter to add new files, without deleting the existing
   def files=(attachables)
     attachables = Array(attachables).compact_blank
 
