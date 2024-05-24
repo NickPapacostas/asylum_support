@@ -1,7 +1,7 @@
 class MetricsController < ApplicationController
 
   # searches in the description of the cases for keywords to order them in categories
-  def mapDescription(description)
+  def map_description(description)
     health = ["hospital", "health", "medical", "psychologist", "pregnant"]
     legal = ["legal", "interview appointment", "interview prep", "family reunification", "first decision", "second decision"]
     if legal.any? {|k| description.include? k} and health.any? {|k| description.include? k}
@@ -22,7 +22,7 @@ class MetricsController < ApplicationController
     # grouped by nationality
     # If the nationality is "", replace it with "No Country"
     # for all members with the nationality, group them by month
-    # for every month, count how the entries
+    # for every month, count the entries
     # returns a hash with nationality : hash (date, count of entries)
     @nationalities = Member.all.group_by{|m| m.nationality}
                            .map{ |nationality, list| [nationality == "" ? "No Country" : nationality, list.group_by_month{|x| x.created_at}]}
@@ -30,7 +30,7 @@ class MetricsController < ApplicationController
                            .to_h
 
     # works the same as @nationalities
-    @topics = Case.all.group_by{|c| mapDescription(c.description)}
+    @topics = Case.all.group_by{|c| map_description(c.description)}
                   .map{ |topic, list| [topic, list.group_by_month{|x| x.created_at}]}
                   .map{ |topic, list| [topic, list.map{|date, m| [date, m.count]}.to_h]}
                   .to_h
