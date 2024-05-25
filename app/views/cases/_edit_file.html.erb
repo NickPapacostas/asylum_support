@@ -1,0 +1,33 @@
+<% @case.files.each do |file| %>
+  <div class="modal modal-lg edit-filename-modal-<%= file.id %>">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edit-filename-modal-title"></h5>
+        <a href="#close" class="edit-filename-close btn btn-clear float-right modal-overlay" aria-label="Close"></a>
+        <div class="modal-title h3">Change filename</div>
+      </div>
+      <div class="divider"></div>
+      <div class="modal-body">
+        <div class="container">
+          <div id="activity-modal-form">
+            <%= form_with(url: "/cases/"+@case.id.to_s+"/rename_file", method: :patch, local: true) do |form| %>
+              <div class='form-group activity-grid-container'>
+                <div class="activity-grid-item">
+                  <%= form.label "Filename", class: 'form-label' %>
+                  <%= form.text_field :new_filename, class: 'activity-input form-input case-activity-select', value: file.filename %>
+
+                  <%= form.hidden_field :file_id, value: file.id %>
+                </div>
+
+              </div>
+              <%= form.submit "Rename", class: 'btn btn-primary filename-save' %>
+              <% if file.id %>
+                <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

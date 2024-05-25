@@ -57,6 +57,7 @@ class CasesController < ApplicationController
 
     if @case.update(case_params)
       @case.case_caseworkers.select { |ccw| ccw.caseworker_id.nil? }.map(&:destroy)
+
       flash[:success] = "Case updated"
       redirect_to case_path(@case)
     else
@@ -79,6 +80,25 @@ class CasesController < ApplicationController
 
   def all_activity
     @activities = CaseActivity.all
+  end
+
+  def rename_file
+
+    @case = Case.find(params[:id])
+    file = @case.files.find(params["file_id"])
+    new_filename = params["new_filename"]
+
+    filenames = @case.files.map{|f| f.filename}
+
+    if filenames.include?(new_filename)
+      return redirect_to @case, alert: 'Filename already used'
+    end
+
+    if @case.rename_file(file, new_filename)
+      redirect_to @case, notice: 'File was renamed'
+    else
+      redirect_to @case, alert: 'File renaming failed.'
+    end
   end
 
   private

@@ -35,6 +35,20 @@ class Case < ApplicationRecord
     end
   end
 
+  def rename_file(file, new_name)
+    file.blob.update!(filename: new_name)
+  end
+
+  # overwriting the setter to add new files, without deleting the existing
+  def files=(attachables)
+    attachables = Array(attachables).compact_blank
+
+    if attachables.any?
+      attachment_changes["files"] =
+        ActiveStorage::Attached::Changes::CreateMany.new("files", self, files.blobs + attachables)
+    end
+  end
+
   # def has_one_lead_member
   #   if members.where(lead_case_member: true).count > 1
   #     errors.add(:lead_case_member, "can't have more than one lead case member")

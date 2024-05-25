@@ -3,14 +3,6 @@
 <div class="case-form">
 	<%= simple_form_for(the_case) do |f| %>
 
-		<div class="form-group">
-			Case active: <%= f.check_box(:active) %>
-			<div class="divider"></div>
-      <%= f.label "Handled by lawyer (Theo)", class: "theo form-label" %>
-      <%= f.radio_button :lawyer, true %> Yes
-      <%= f.radio_button :lawyer, false %> No
-      <div class="divider"></div>
-
       <% if drive_link = the_case.google_drive_link %>
         <%= link_to("Google Drive folder", drive_link, target: :_blank) %>
         <button id="google-drive-edit" class="btn btn-secondary">Edit</button>
@@ -124,17 +116,28 @@
 		</div>
 		<%= f.add_nested_fields_link :members, "+", class: 'btn btn-primary add-member' %>
 
+		<div class="form-group">
+			<%= f.submit "Save Case", {class: 'btn btn-primary', id: 'case-save'} %>
+		</div>
+	<% end %>
+
 		<div class="divider big-divider"></div>
 
     <div>
       <h2>Files</h2>
     </div>
+		<%= render partial: 'edit_file', locals: {files: @case.files} %>
 
-  	<div class="container">
+		<div class="container">
   		<div class="columns">
   			<div class="column col-6">
 	  			<h4>Add Files</h4>
-  				<%= f.file_field :files, multiple: true, direct_upload: true %>
+					<%= simple_form_for(the_case) do |f| %>
+						<%= f.file_field :files, multiple: true, direct_upload: true %>
+							<div class="form-group">
+								<%= f.submit "Add Files", {class: 'btn btn-primary', id: 'case-save'} %>
+							</div>
+					<% end %>
   			</div>
   			<% if @case.files.empty? %>
 	  			<div class="column col-6">
@@ -146,6 +149,7 @@
 						  <% @case.files.each do |file| %>
 						    <li>
 						      <%= link_to(file.blob.filename, rails_blob_path(file.blob, disposition: "attachment")) %>
+									<%= link_to("Edit", "#/", {data: {toggle: "modal", file_id: file.id}, class: 'open-edit-filename-modal'}) %>
 						    </li>
 						  <% end %>
 						</ul>
@@ -154,12 +158,6 @@
 	  		<% end %>
   		</div>
   	</div>
-
-
-		<div class="form-group">
-			<%= f.submit "Save Case", {class: 'btn btn-primary', id: 'case-save'} %>
-		</div>
-	<% end %>
 </div>
 
 
