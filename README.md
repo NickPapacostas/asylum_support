@@ -1,24 +1,25 @@
-# README
+# Asylum Support
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web application for tracking asylum cases built around the needs of [Khora Asylum Support Team](https://khoracollective.org/asylum-support-team). It provides basic features like creating a case with metadata about the participants, adding files, and tracking activity.
 
-Things you may want to cover:
 
-* Ruby version
+## Built with
 
-* System dependencies
+- Ruby on Rails
+- jQuery
+- [AjaxDatatables](https://github.com/jbox-web/ajax-datatables-rails/)
 
-* Configuration
 
-* Database creation
+## Running locally
 
-* Database initialization
+Required Ruby version can be found in `.tool-versions` (and installed with [asdf](https://github.com/asdf-vm/asdf-ruby))
 
-* How to run the test suite
+1. bundle install
+2. rails db:create & rails db:migrate
+3. rails s
 
-* Services (job queues, cache servers, search engines, etc.)
+## History (written 2024)
 
-* Deployment instructions
+This app was initially created by volunteers from Khora. It has been running in production on Heroku for many years without issue, but the code is a bit old and there are _no tests_, which is bad.
 
-* ...
+
