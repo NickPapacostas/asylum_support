@@ -2,16 +2,14 @@
 
 <div class="case-form">
 	<%= simple_form_for(the_case) do |f| %>
+    <% if drive_link = the_case.google_drive_link %>
+      <%= link_to("Google Drive folder", drive_link, target: :_blank) %>
+      <button id="google-drive-edit" class="btn btn-secondary">Edit</button>
+    <% end %>
 
-      <% if drive_link = the_case.google_drive_link %>
-        <%= link_to("Google Drive folder", drive_link, target: :_blank) %>
-        <button id="google-drive-edit" class="btn btn-secondary">Edit</button>
-      <% end %>
-
-      <div id="edit-drive-link" class="<%= the_case.google_drive_link ? "d-hide" : nil %>">
-        <%= f.text_field :google_drive_link, placeholder: "Google drive folder" %>
-      </div>
-		</div>
+    <div id="edit-drive-link" class="<%= the_case.google_drive_link ? "d-hide" : nil %>">
+      <%= f.text_field :google_drive_link, placeholder: "Google drive folder" %>
+    </div>
 
 		<%= f.submit "Save Case", {class: 'btn btn-primary upper-case-save'} %>
 		<hr class="upper-case-form-divider">
@@ -116,10 +114,6 @@
 		</div>
 		<%= f.add_nested_fields_link :members, "+", class: 'btn btn-primary add-member' %>
 
-		<div class="form-group">
-			<%= f.submit "Save Case", {class: 'btn btn-primary', id: 'case-save'} %>
-		</div>
-	<% end %>
 
 		<div class="divider big-divider"></div>
 
@@ -158,6 +152,11 @@
 	  		<% end %>
   		</div>
   	</div>
+
+		<div class="form-group">
+			<%= f.submit "Save Case", {class: 'btn btn-primary', id: 'case-save'} %>
+		</div>
+	<% end %>
 </div>
 
 
