@@ -49,7 +49,7 @@ gem 'simple_form'
 
 gem 'aws-sdk-s3', require: false
 
-gem 'activeadmin', '~> 3.1.0'
+gem 'activeadmin', '~> 3.2.2'
 
 gem 'chartkick'
 
