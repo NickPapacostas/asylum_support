@@ -46,9 +46,27 @@
 						<% end %>
 					</div>
 				</div>
+
 				<div class="column col-9">
+					<div class="collection-select">
+						<%= f.label "Tags", class: "form-label" %>
+						<div class="container">
+							<div class="columns case-tags">
+								<%= f.collection_check_boxes(:tags, Case.tag_options, :to_s, :to_s) do |b| %>
+									<h1><% the_case.tags %></h1>
+									<div class="column">
+										<%= b.label class:"form-label" do %>
+											<%= b.check_box + " " +  b.text%>
+										<%end%>
+									</div>
+								<% end %>
+							</div>
+						</div>
+					</div>
+					<div>
 			  	<%= f.label "Description", {class: "form-label", placeholder: "Brief Overview..."} %>
 			  	<%= f.text_area :description, placeholder: "Brief Overview..." %>
+					</div>
 				</div>
 			</div>
 		</div>

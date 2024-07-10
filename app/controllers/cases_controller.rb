@@ -54,7 +54,6 @@ class CasesController < ApplicationController
   def update
     @case = Case.find(params[:id])
     set_activities
-
     if @case.update(case_params)
       @case.case_caseworkers.select { |ccw| ccw.caseworker_id.nil? }.map(&:destroy)
 
@@ -120,7 +119,9 @@ class CasesController < ApplicationController
         :active,
         :caseworker_id,
         case_caseworkers_attributes: [:caseworker_id],
-        members_attributes: Member.strong_params, files: []
+        members_attributes: Member.strong_params,
+        files: [],
+        tags: []
       )
   end
 end
