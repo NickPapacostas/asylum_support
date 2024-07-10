@@ -199,3 +199,7 @@ h1, h2, h3 {
 .upper-case-form-divider {
 	margin-top: 10px !important;
 }
+
+.case-tags {
+	justify-content: center;
+}

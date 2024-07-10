@@ -10,8 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_05_151111) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_07_162704) do
+  create_schema "heroku_ext"
+
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -79,18 +82,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_151111) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
   end
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
   create_table "case_caseworkers", force: :cascade do |t|
     t.bigint "case_id"
     t.bigint "caseworker_id"
@@ -109,6 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_151111) do
     t.boolean "active", default: true
     t.boolean "lawyer", default: false
     t.string "google_drive_link"
+    t.string "tags", default: [], array: true
     t.index ["caseworker_id"], name: "index_cases_on_caseworker_id"
   end
 
@@ -125,20 +117,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_151111) do
     t.boolean "admin", default: false
     t.index ["email"], name: "index_caseworkers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_caseworkers_on_reset_password_token", unique: true
-  end
-
-  create_table "linked_cases", force: :cascade do |t|
-    t.integer "first_id"
-    t.integer "second_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-  end
-
-  create_table "linked_documents", force: :cascade do |t|
-    t.bigint "case_id", null: false
-    t.string "title", null: false
-    t.string "url", null: false
-    t.index ["case_id"], name: "index_linked_documents_on_case_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -159,6 +137,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_151111) do
     t.date "arrival_date"
     t.string "arrival_location"
     t.string "regional_asylum_office"
+    t.boolean "geographic_restriction", default: false
     t.string "legal_status", default: [], array: true
     t.string "vulnerabilities", default: [], array: true
     t.string "housing", default: [], array: true
@@ -168,7 +147,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_151111) do
     t.boolean "amka"
     t.boolean "afm"
     t.boolean "bank_account"
-    t.boolean "geographic_restriction"
     t.string "relation"
     t.boolean "lead_case_member", default: false
     t.index ["case_id"], name: "index_members_on_case_id"
