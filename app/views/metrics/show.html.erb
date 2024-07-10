@@ -5,5 +5,7 @@
   <%= line_chart Member.group_by_week(:created_at).count, title:"Cases over time", id: "casesChart", xmin: "2023-01-01"%>
 </div>
   <%= line_chart @nationalities.map{|nationality, dates| {name: nationality, data: dates}}, title:"Countries of Origin over time", id: "countriesLineChart", colors: ["#EDCC21", "#ED3121", "#3BEB88", "#281CED", "#579672", "#40701B", "#CE52E7", "#234BB6", "#08B57A", "#FA3C42", "#EBAF26", "#EB267C", "#25EB2B","#2665EB", "#46AB49", "#EB8C26","#D326EB","#88EB26", "#26B5EB","#71AC36", "#EB7A23","#B423EB","#AFEB23","#23D2EB","#87AB33","#965E48","#6A4896","#489689","#6B6A46","#413835","#EBA0C5","#6091EB","#EBBF60","#78EB78","#AB9360","#966F83","#6F7D96","#7A997A","#6B675F","#EB9D73","#9C34EB","#DAEB33","#4BEBE5","#A0AB3F","#795396","#7C9998","#686B4D"]%>
-  <%= line_chart @topics.map{|topic, dates| {name: topic, data: dates}}, title:"Topics over time", id: "topicChart" %>
+  <%= line_chart @tags.map{|tag, dates| {name: tag, data: dates}}, title:"Tags over time", id: "tagChart" %>
+
+
 </div>
