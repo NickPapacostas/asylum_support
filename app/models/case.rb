@@ -15,6 +15,12 @@ class Case < ApplicationRecord
 
   # validate :has_one_lead_member
 
+  def self.strong_params
+    [
+      tags: []
+    ]
+  end
+
   def member_name
     lead_member.try(:full_name)
   end
@@ -47,6 +53,16 @@ class Case < ApplicationRecord
       attachment_changes["files"] =
         ActiveStorage::Attached::Changes::CreateMany.new("files", self, files.blobs + attachables)
     end
+  end
+
+  def self.tag_options
+    [
+      "Health",
+      "Legal",
+      "Clothes",
+      "Food",
+      "Other"
+    ]
   end
 
   # def has_one_lead_member
